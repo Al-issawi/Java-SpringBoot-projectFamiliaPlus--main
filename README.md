@@ -6,10 +6,6 @@ Equipo 06
 -          Gestiona perfiles
 -          Gestiona base de datos
 -          Administra el sistema
-## A continuación se muestran los diagramas de secuencias para los requisitos
-     funcionales de perfiles de usuarios  más significativos: 
-
-
 
 ## Bbdd: MySQL
 
@@ -41,10 +37,6 @@ Equipo 06
 5.      Centro:código.
 6.      cuidad:cp
 
-
-
-
-
 #### Paso 4:  modelo relacional :
 1.      USARIO (código, Nombre, Apellidos, Dirección, Email, móvil, fecha de alta, contrato, relación-Familiar).
 2.      RESIDENTE ( codigo usario,código centro).,
@@ -53,7 +45,7 @@ Equipo 06
 5.      Cuidado:código residente,código personal.
 6.      perentence:codigo centro, codigo personal.
 
-#### BBDD corregido
+## BBDD corregido
 
     USUARIO (cod_usuario, nombre, apellidos, email, fecha_alta, contraseña).
     RESIDENTE (n_resi, nombre, apellidos, edad, n_hab, cod_usuario, código).
