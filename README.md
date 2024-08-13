@@ -90,15 +90,19 @@ Para entender mejor el proyecto, aquí tienes algunos diagramas que muestran la 
 Aunque el proyecto ya no está en Heroku, te dejamos aquí algunos detalles sobre cómo se conectaba la base de datos en ese entorno:
 
 - **Conexión a Heroku** 
-- ![Conexión a Heroku](./herukoconeccion3.jpg)
+    ![Conexión a Heroku](./herukoconeccion3.jpg)
 
 - **Conexión a Heroku** 
-- ![Conexión a Heroku](./herukoconeccion2.jpg)
+    ![Conexión a Heroku](./herukoconeccion2.jpg)
 
-- ![Servidor Heroku con MySQL](./serverHerokuConMYSQL.png)
+    ![Servidor Heroku con MySQL](./serverHerokuConMYSQL.png)
 
 - **Test** 
-- ![Prueba Heroku](./pruebaHeroku1.png)
 
-- ![Prueba](./prueba14.jpg)
-- ![Diagrama MVC](./MVCDiagrama.jpg)
+    ![Prueba Heroku](./pruebaHeroku1.png)
+
+    ![Prueba](./prueba14.jpg)
+
+- **MVC**
+  
+     ![Diagrama MVC](./MVCDiagrama.jpg)
