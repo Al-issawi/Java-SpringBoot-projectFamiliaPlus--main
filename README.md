@@ -88,10 +88,12 @@ Aunque el proyecto ya no está en Heroku, te dejamos aquí algunos detalles sobr
 
   ![Servidor Heroku con MySQL](./serverHerokuConMYSQL.png)
 
+
 - **Test**  
   ![Prueba Heroku](./pruebaHeroku1.png)
 
   ![Prueba](./prueba14.jpg)
 
-- **MVC**  
+
+- ****MVC****  
   ![Diagrama MVC](./MVCDiagrama.jpg)
