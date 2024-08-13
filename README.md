@@ -1,7 +1,12 @@
 Proyecto DAW 2021/2023
 Familia+
 Equipo 06
-## Asistente técnico:
+
+**Nota Importante:**  
+Este proyecto ya no está disponible en el servidor. A continuación, así como instrucciones alternativas para aquellos interesados en trabajar con el código localmente.
+
+## Razones por la Retirada del Proyecto del Servidor
+## Asistente técnico:En El Archivo **DOC** se encuentra :
 -          Clasifica usuarios
 -          Gestiona perfiles
 -          Gestiona base de datos
@@ -63,17 +68,22 @@ lo que ampliará las capacidades del programa.
 A continuación se muestra una descripción más detallada de cada caso de uso:
 
 ## Diagramas:
-
+#### diagrama
 ![Diragrama.png](./diagrama.png)
 
+#### BaseRelacionadoDiagrama
 ![BaseRelacionadoDiagram.png](./BaseRelacionadoDiagrama.png)
 
+#### DDBB Diagrama. 
 ![DiagramaDDBB.png](./DiagramaDDBB.png)
 
+#### DiagramaDeClases
 ![DiagramaDeClases.jpg](./DiagramaDeClases.jpg)
 
+#### diagramaDeFlujo
 ![diagramaDeFlujo.jpg](./diagramaDeFlujo.jpg)
 
+#### diagramaDeTecnologia
 ![diagramaDeTecnologia.jpg](./diagramaDeTecnologia.jpg)
 
 
