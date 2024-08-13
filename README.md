@@ -7,7 +7,7 @@ Equipo 06
 -          Gestiona base de datos
 -          Administra el sistema
 
-## Bbdd: MySQL
+# Bbdd: MySQL
 
 ### Paso 1: Las entidades pasarán a ser tablas:
 •   	Usuario
@@ -17,7 +17,6 @@ Equipo 06
 •       Centro.
 •       PARTENCE
 •       Cuidad.
-
 
 ### Paso 2: Los atributos de cada entidad pasarán a ser columnas de dichas tablas.
 
@@ -29,7 +28,7 @@ Equipo 06
 6.      Cuidad:cp,provencia,nom_cuidad,
 7.      partencia:centro,personal.
 
-#### Paso 3: Los identificadores principales :
+### Paso 3: Los identificadores principales :
 1.      Usario: codigo-usario.                              	
 2.      Residente: codigo-resedente.                              	
 3.      CUIDADOS DIARIOS: código-cuidados.            	
@@ -37,7 +36,7 @@ Equipo 06
 5.      Centro:código.
 6.      cuidad:cp
 
-#### Paso 4:  modelo relacional :
+### Paso 4:  modelo relacional :
 1.      USARIO (código, Nombre, Apellidos, Dirección, Email, móvil, fecha de alta, contrato, relación-Familiar).
 2.      RESIDENTE ( codigo usario,código centro).,
 3.      Pertence: código personal,código centro.
@@ -55,7 +54,7 @@ Equipo 06
     CENTRO (código, nombre, dirección, CP, teléfono).
     CIUDAD (CP, ciudad, provincia).
 
-## c. Casos de uso Mohammed BORRADOR>
+## c. Casos de uso 
 
 En el primer diagrama de casos de uso están 3 actores principales. 
 Con el desarrollo y la expansión del programa, aquí se pueden agregar más actores y otros servicios,
