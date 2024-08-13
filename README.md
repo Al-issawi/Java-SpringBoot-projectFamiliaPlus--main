@@ -95,5 +95,5 @@ Aunque el proyecto ya no está en Heroku, te dejamos aquí algunos detalles sobr
   ![Prueba](./prueba14.jpg)
 
 
-- ****MVC****  
+- **MVC**  
   ![Diagrama MVC](./MVCDiagrama.jpg)
