@@ -62,43 +62,36 @@ Aquí tienes un resumen de cómo quedaría la base de datos después de las corr
 
 Para entender mejor el proyecto, aquí tienes algunos diagramas que muestran la estructura y flujo de la aplicación:
 
+- **Base Relacional - Diagrama Dia.ai**  
+  ![Base Relacional Diagrama](./BaseRelacionadoDiagrama.png)
 
-- **Base Relacional - Diagrama Dia.ai**
-     ![Base Relacional Diagrama](./BaseRelacionadoDiagrama.png)
-
-- **Diagrama de Base de Datos (DDBB)**
+- **Diagrama de Base de Datos (DDBB)**  
   ![DDBB Diagrama](./DiagramaDDBB.png)
 
-- **Diagrama de Clases**
+- **Diagrama de Clases**  
   ![Diagrama de Clases](./DiagramaDeClases.jpg)
 
-
-- **Diagrama de Flujo**
+- **Diagrama de Flujo**  
   ![Diagrama de Flujo](./diagramaDeFlujo.jpg)
 
-
-- **Diagrama de Tecnología**
+- **Diagrama de Tecnología**  
   ![Diagrama de Tecnología](./diagramaDeTecnologia.jpg)
 
-
 ## Conexión a la BBDD en el Servidor Heroku
+
 Aunque el proyecto ya no está en Heroku, te dejamos aquí algunos detalles sobre cómo se conectaba la base de datos en ese entorno:
 
-- **Conexión a Heroku**
+- **Conexión a Heroku**  
   ![Conexión a Heroku](./herukoconeccion3.jpg)
 
-
-- **Conexión a Heroku**
-  ![Conexión a Heroku](./herukoconeccion2.jpg)
+  ![Conexión a Heroku 2](./herukoconeccion2.jpg)
 
   ![Servidor Heroku con MySQL](./serverHerokuConMYSQL.png)
 
-
-- **Test**
+- **Test**  
   ![Prueba Heroku](./pruebaHeroku1.png)
 
   ![Prueba](./prueba14.jpg)
 
-
-- **MVC**
+- **MVC**  
   ![Diagrama MVC](./MVCDiagrama.jpg)
