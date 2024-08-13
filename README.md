@@ -64,19 +64,27 @@ Para entender mejor el proyecto, aquí tienes algunos diagramas que muestran la 
 
 
 - **Base Relacional - Diagrama Dia.ai**
-    ![Base Relacional Diagrama](./BaseRelacionadoDiagrama.png)
+
+     ![Base Relacional Diagrama](./BaseRelacionadoDiagrama.png)
 
 - **Diagrama de Base de Datos (DDBB)**
-    ![DDBB Diagrama](./DiagramaDDBB.png)
+
+     ![DDBB Diagrama](./DiagramaDDBB.png)
 
 - **Diagrama de Clases**
-    ![Diagrama de Clases](./DiagramaDeClases.jpg)
+
+     ![Diagrama de Clases](./DiagramaDeClases.jpg)
+
 
 - **Diagrama de Flujo**
-    ![Diagrama de Flujo](./diagramaDeFlujo.jpg)
+
+     ![Diagrama de Flujo](./diagramaDeFlujo.jpg)
+
 
 - **Diagrama de Tecnología**
-    ![Diagrama de Tecnología](./diagramaDeTecnologia.jpg)
+
+     ![Diagrama de Tecnología](./diagramaDeTecnologia.jpg)
+
 
 ## Conexión a la BBDD en el Servidor Heroku
 Aunque el proyecto ya no está en Heroku, te dejamos aquí algunos detalles sobre cómo se conectaba la base de datos en ese entorno:
