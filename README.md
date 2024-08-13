@@ -67,38 +67,38 @@ Para entender mejor el proyecto, aquí tienes algunos diagramas que muestran la 
      ![Base Relacional Diagrama](./BaseRelacionadoDiagrama.png)
 
 - **Diagrama de Base de Datos (DDBB)**
-     ![DDBB Diagrama](./DiagramaDDBB.png)
+  ![DDBB Diagrama](./DiagramaDDBB.png)
 
 - **Diagrama de Clases**
-     ![Diagrama de Clases](./DiagramaDeClases.jpg)
+  ![Diagrama de Clases](./DiagramaDeClases.jpg)
 
 
 - **Diagrama de Flujo**
-     ![Diagrama de Flujo](./diagramaDeFlujo.jpg)
+  ![Diagrama de Flujo](./diagramaDeFlujo.jpg)
 
 
 - **Diagrama de Tecnología**
-     ![Diagrama de Tecnología](./diagramaDeTecnologia.jpg)
+  ![Diagrama de Tecnología](./diagramaDeTecnologia.jpg)
 
 
 ## Conexión a la BBDD en el Servidor Heroku
 Aunque el proyecto ya no está en Heroku, te dejamos aquí algunos detalles sobre cómo se conectaba la base de datos en ese entorno:
 
-- **Conexión a Heroku** 
-    ![Conexión a Heroku](./herukoconeccion3.jpg)
+- **Conexión a Heroku**
+  ![Conexión a Heroku](./herukoconeccion3.jpg)
 
 
-- **Conexión a Heroku** 
-    ![Conexión a Heroku](./herukoconeccion2.jpg)
+- **Conexión a Heroku**
+  ![Conexión a Heroku](./herukoconeccion2.jpg)
 
-    ![Servidor Heroku con MySQL](./serverHerokuConMYSQL.png)
+  ![Servidor Heroku con MySQL](./serverHerokuConMYSQL.png)
 
 
-- **Test** 
-    ![Prueba Heroku](./pruebaHeroku1.png)
+- **Test**
+  ![Prueba Heroku](./pruebaHeroku1.png)
 
-    ![Prueba](./prueba14.jpg)
+  ![Prueba](./prueba14.jpg)
 
 
 - **MVC**
-     ![Diagrama MVC](./MVCDiagrama.jpg)
+  ![Diagrama MVC](./MVCDiagrama.jpg)
