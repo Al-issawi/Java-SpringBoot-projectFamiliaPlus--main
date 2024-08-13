@@ -1,103 +1,92 @@
-Proyecto DAW 2021/2023
-Familia+
-Equipo 06
+# Proyecto DAW 2021/2023 - Familia+
+## Equipo 06
 
 **Nota Importante:**  
-Este proyecto ya no está disponible en el servidor. A continuación, así como instrucciones alternativas para aquellos interesados en trabajar con el código localmente.
+Este proyecto ya no está disponible en el servidor. Sin embargo, si estás interesado en trabajar con el código localmente, aquí te dejamos las instrucciones y algunos detalles técnicos.
 
-## Razones por la Retirada del Proyecto del Servidor
-## Asistente técnico:En El Archivo **DOC** se encuentra :
--          Clasifica usuarios
--          Gestiona perfiles
--          Gestiona base de datos
--          Administra el sistema
+## ¿Por qué retiramos el proyecto del servidor?
 
-# Bbdd: MySQL
+El proyecto Familia+ ya no está activo en el servidor por razones mantenimiento, migración. Aunque ya no esté en línea, el código sigue disponible y puedes usarlo para aprender, modificar o desplegar tu propia versión.
 
-### Paso 1: Las entidades pasarán a ser tablas:
-•   	Usuario
-•       Residente
-•       Cuidados
-•       Personal
-•       Centro.
-•       PARTENCE
-•       Cuidad.
+##  Un resumen de las funciones que puedes explorar:
 
-### Paso 2: Los atributos de cada entidad pasarán a ser columnas de dichas tablas.
+- Clasificación de usuarios
+- Gestión de perfiles y datos personales
+- Administración de la base de datos
+- Gestión del sistema completo
 
-1.      USARIO (código, Nombre, Apellidos, Dirección, Email, móvil, fecha de alta.contrato,).
-2.      RESIDENTE (código. nombre, edad, habitación, fecha de alta).
-3.      CUIDADOS DIARIOS: (código. descripción, fecha)
-4.      Personal del centro: (cod-personal. nombre. Puesto).
-5.      Centro: cod.centro, nombre, dirección.teff.)
-6.      Cuidad:cp,provencia,nom_cuidad,
-7.      partencia:centro,personal.
+## Base de Datos: MySQL
 
-### Paso 3: Los identificadores principales :
-1.      Usario: codigo-usario.                              	
-2.      Residente: codigo-resedente.                              	
-3.      CUIDADOS DIARIOS: código-cuidados.            	
-4.      Personal del centro: código-personal
-5.      Centro:código.
-6.      cuidad:cp
+Si decides trabajar con el proyecto, estas son las entidades clave que se convierten en tablas dentro de la base de datos:
 
-### Paso 4:  modelo relacional :
-1.      USARIO (código, Nombre, Apellidos, Dirección, Email, móvil, fecha de alta, contrato, relación-Familiar).
-2.      RESIDENTE ( codigo usario,código centro).,
-3.      Pertence: código personal,código centro.
-4.      Centro :cp cuidad,
-5.      Cuidado:código residente,código personal.
-6.      perentence:codigo centro, codigo personal.
+- **USUARIO**: Información personal y datos de acceso
+- **RESIDENTE**: Datos de los residentes
+- **CUIDADOS**: Registros de cuidados diarios
+- **PERSONAL**: Información del personal
+- **CENTRO**: Detalles del centro de operación
+- **PERTENECE**: Relación entre personal y centro
+- **CIUDAD**: Información de la ciudad y provincia
 
-## BBDD corregido
+### Pasos para Configurar la Base de Datos
 
-    USUARIO (cod_usuario, nombre, apellidos, email, fecha_alta, contraseña).
-    RESIDENTE (n_resi, nombre, apellidos, edad, n_hab, cod_usuario, código).
-    CUIDADO (n_resi, ID, descripción, fecha).
-    PERSONAL (ID, nombre, apellidos, puesto, contraseña).
-    PERTENECE (ID, código)
-    CENTRO (código, nombre, dirección, CP, teléfono).
-    CIUDAD (CP, ciudad, provincia).
+1. **Convertir Entidades en Tablas:**  
+   Por ejemplo, la entidad **USUARIO** se convierte en una tabla con columnas como código, nombre, apellidos, dirección, email, etc.
 
-## c. Casos de uso 
+2. **Definir los Atributos como Columnas:**  
+   Cada atributo de una entidad será una columna en la tabla correspondiente. Por ejemplo:
+   - **USUARIO**: (código, nombre, apellidos, dirección, email, móvil, fecha de alta, contrato)
+   - **RESIDENTE**: (código, nombre, edad, habitación, fecha de alta)
 
-En el primer diagrama de casos de uso están 3 actores principales. 
-Con el desarrollo y la expansión del programa, aquí se pueden agregar más actores y otros servicios,
+3. **Asignar Identificadores Principales:**  
+   Cada tabla tendrá un identificador único, como código_usuario para la tabla de usuarios.
 
-lo que ampliará las capacidades del programa. 
-A continuación se muestra una descripción más detallada de cada caso de uso:
+4. **Modelo Relacional:**  
+   Aquí es donde se define cómo se relacionan las tablas entre sí. Por ejemplo:
+   - **USUARIO** está relacionado con **RESIDENTE** a través de código_usuario.
+   - **CUIDADOS** está relacionado con **RESIDENTE** y **PERSONAL**.
 
-## Diagramas:
-#### diagrama
-![Diragrama.png](./diagrama.png)
+### Base de Datos Corregida
 
-#### BaseRelacionadoDiagrama
-![BaseRelacionadoDiagram.png](./BaseRelacionadoDiagrama.png)
+Aquí tienes un resumen de cómo quedaría la base de datos después de las correcciones:
 
-#### DDBB Diagrama. 
-![DiagramaDDBB.png](./DiagramaDDBB.png)
-
-#### DiagramaDeClases
-![DiagramaDeClases.jpg](./DiagramaDeClases.jpg)
-
-#### diagramaDeFlujo
-![diagramaDeFlujo.jpg](./diagramaDeFlujo.jpg)
-
-#### diagramaDeTecnologia
-![diagramaDeTecnologia.jpg](./diagramaDeTecnologia.jpg)
+- **USUARIO**: (cod_usuario, nombre, apellidos, email, fecha_alta, contraseña)
+- **RESIDENTE**: (n_resi, nombre, apellidos, edad, n_hab, cod_usuario, código)
+- **CUIDADO**: (n_resi, ID, descripción, fecha)
+- **PERSONAL**: (ID, nombre, apellidos, puesto, contraseña)
+- **PERTENECE**: (ID, código)
+- **CENTRO**: (código, nombre, dirección, CP, teléfono)
+- **CIUDAD**: (CP, ciudad, provincia)
 
 
+## Diagramas
 
-## Conexion BBDD en Servidor Heroku
+Para entender mejor el proyecto, aquí tienes algunos diagramas que muestran la estructura y flujo de la aplicación:
 
-![herukoconeccion3.jpg](./herukoconeccion3.jpg)
+- **Diagrama Base Relacional (MySQL)**
+  ![Diagrama Base Relacional](./diagrama.png)
 
-![complexional2.jpg](./herukoconeccion2.jpg)
+- **Base Relacional - Diagrama Dia.ai**
+  ![Base Relacional Diagrama](./BaseRelacionadoDiagrama.png)
 
-![serverHerokuConMYSQL.png](./serverHerokuConMYSQL.png)
+- **Diagrama de Base de Datos (DDBB)**
+  ![DDBB Diagrama](./DiagramaDDBB.png)
 
-![pruebaHeroku1.png](./pruebaHeroku1.png)
+- **Diagrama de Clases**
+  ![Diagrama de Clases](./DiagramaDeClases.jpg)
 
-![prueba14.jpg](./prueba14.jpg)
+- **Diagrama de Flujo**
+  ![Diagrama de Flujo](./diagramaDeFlujo.jpg)
 
-![MVCDiagrama.jpg](./MVCDiagrama.jpg)
+- **Diagrama de Tecnología**
+  ![Diagrama de Tecnología](./diagramaDeTecnologia.jpg)
+
+## Conexión a la BBDD en el Servidor Heroku
+
+Aunque el proyecto ya no está en Heroku, te dejamos aquí algunos detalles sobre cómo se conectaba la base de datos en ese entorno:
+
+- ![Conexión a Heroku 3](./herukoconeccion3.jpg)
+- ![Conexión a Heroku 2](./herukoconeccion2.jpg)
+- ![Servidor Heroku con MySQL](./serverHerokuConMYSQL.png)
+- ![Prueba Heroku 1](./pruebaHeroku1.png)
+- ![Prueba 14](./prueba14.jpg)
+- ![Diagrama MVC](./MVCDiagrama.jpg)
