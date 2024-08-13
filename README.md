@@ -64,25 +64,20 @@ Para entender mejor el proyecto, aquí tienes algunos diagramas que muestran la 
 
 
 - **Base Relacional - Diagrama Dia.ai**
-
      ![Base Relacional Diagrama](./BaseRelacionadoDiagrama.png)
 
 - **Diagrama de Base de Datos (DDBB)**
-
      ![DDBB Diagrama](./DiagramaDDBB.png)
 
 - **Diagrama de Clases**
-
      ![Diagrama de Clases](./DiagramaDeClases.jpg)
 
 
 - **Diagrama de Flujo**
-
      ![Diagrama de Flujo](./diagramaDeFlujo.jpg)
 
 
 - **Diagrama de Tecnología**
-
      ![Diagrama de Tecnología](./diagramaDeTecnologia.jpg)
 
 
@@ -92,17 +87,18 @@ Aunque el proyecto ya no está en Heroku, te dejamos aquí algunos detalles sobr
 - **Conexión a Heroku** 
     ![Conexión a Heroku](./herukoconeccion3.jpg)
 
+
 - **Conexión a Heroku** 
     ![Conexión a Heroku](./herukoconeccion2.jpg)
 
     ![Servidor Heroku con MySQL](./serverHerokuConMYSQL.png)
 
-- **Test** 
 
+- **Test** 
     ![Prueba Heroku](./pruebaHeroku1.png)
 
     ![Prueba](./prueba14.jpg)
 
+
 - **MVC**
-  
      ![Diagrama MVC](./MVCDiagrama.jpg)
