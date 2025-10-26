@@ -1,9 +1,0 @@
-model\Usuario.class
-inicio\FamiliaPlusApplication.class
-bbdd\ConexionBBDD.class
-model\Personal.class
-bbdd\Conexion.class
-controllers\FamiliaController.class
-model\Familiar.class
-model\Residente.class
-model\Cuidado.class
