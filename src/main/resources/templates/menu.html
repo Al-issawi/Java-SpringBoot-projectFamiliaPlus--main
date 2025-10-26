@@ -60,27 +60,72 @@
     </nav>
 
     <main class="main-content">
-      <div class="page-header">
-        <h1>Menú Mensual</h1>
-        <p class="page-subtitle">
-          Comidas nutritivas y deliciosas preparadas con amor
-        </p>
+      <div class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">Menú Mensual</h1>
+          <p class="hero-subtitle">
+            Planificación nutricional para nuestros residentes
+          </p>
+          <div class="download-section">
+            <a
+              href="/download/activities-schedule"
+              class="download-btn"
+              download
+            >
+              <i class="fas fa-download"></i>
+              Descargar Menú en PDF
+            </a>
+          </div>
+        </div>
       </div>
 
       <div class="menu-container">
-        <div class="menu-image-container">
-          <img
-            class="menu-image"
-            alt="Menú mensual nutritivo"
-            src="media/menu.jpg"
-          />
-          <div class="menu-overlay">
-            <h3>Menú Balanceado</h3>
-            <p>Diseñado por nutricionistas especializados</p>
+        <div class="menu-card">
+          <div class="menu-image">
+            <img src="media/menu.jpg" alt="Menú Mensual - Comida saludable" />
+            <div class="menu-overlay">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <button
+              class="zoom-btn"
+              onclick="zoomImage(this)"
+              title="Ver imagen más grande"
+            >
+              <i class="fas fa-search-plus"></i>
+            </button>
+          </div>
+          <div class="menu-content">
+            <h3 class="menu-title">Menú Semanal</h3>
+            <p class="menu-description">
+              Nuestro menú está cuidadosamente planificado por nutricionistas
+              profesionales, garantizando una alimentación equilibrada y sabrosa
+              para todos nuestros residentes. Incluye opciones variadas
+              adaptadas a diferentes necesidades dietéticas.
+            </p>
+            <div class="menu-features">
+              <div class="feature">
+                <i class="fas fa-heart"></i>
+                <span>Dietas personalizadas</span>
+              </div>
+              <div class="feature">
+                <i class="fas fa-leaf"></i>
+                <span>Ingredientes frescos</span>
+              </div>
+              <div class="feature">
+                <i class="fas fa-clock"></i>
+                <span>Horarios regulares</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </main>
+
+    <!-- Image Zoom Modal -->
+    <div id="imageModal" class="image-modal">
+      <span class="close-modal" onclick="closeImageModal()">&times;</span>
+      <img class="modal-content" id="modalImage" />
+    </div>
 
     <footer class="modern-footer">
       <div class="footer-content">

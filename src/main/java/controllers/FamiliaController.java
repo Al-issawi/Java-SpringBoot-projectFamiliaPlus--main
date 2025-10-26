@@ -1,5 +1,10 @@
 package controllers;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -81,6 +86,7 @@ public class FamiliaController {
 	 * @version 1.0
 	 * @date 2023-6-10
 	 * 
+	 * 
 	 * @author Mohammed alisawi
 	 * @version 1.1
 	 * @date 2025-10-26
@@ -112,6 +118,26 @@ public class FamiliaController {
 	@RequestMapping("/contacto")
 	public String contacto() {
 		return "contacto";
+	}
+
+	@GetMapping("/download/activities-schedule")
+	public ResponseEntity<Resource> downloadActivitiesSchedule() {
+		try {
+			// Create a resource for the PDF file
+			Resource resource = new ClassPathResource("static/documents/menu-mensual.pdf");
+
+			if (resource.exists()) {
+				return ResponseEntity.ok()
+						.contentType(MediaType.APPLICATION_PDF)
+						.header(HttpHeaders.CONTENT_DISPOSITION,
+								"attachment; filename=\"Menu-Mensual-FAMILIA-PLUS.pdf\"")
+						.body(resource);
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.internalServerError().build();
+		}
 	}
 
 }

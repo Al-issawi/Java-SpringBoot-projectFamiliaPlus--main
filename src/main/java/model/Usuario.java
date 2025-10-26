@@ -19,6 +19,7 @@ public class Usuario {
 	 * Busca información del usuario en función del login y pass
 	 * 
 	 * @author Irene Agea
+	 * version 1.0
 	 * @param idUsuario
 	 * @param pass
 	 * @return Usuario

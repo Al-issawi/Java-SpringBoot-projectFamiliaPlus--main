@@ -380,3 +380,50 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+// Image Zoom Functionality
+function zoomImage(button) {
+  const img = button.parentElement.querySelector("img");
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+
+  if (img && modal && modalImg) {
+    modal.classList.add("active");
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+    document.body.style.overflow = "hidden";
+
+    // Close on Escape key
+    document.addEventListener("keydown", handleImageModalEscape);
+  }
+}
+
+function closeImageModal() {
+  const modal = document.getElementById("imageModal");
+
+  if (modal) {
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+
+    // Remove escape key listener
+    document.removeEventListener("keydown", handleImageModalEscape);
+  }
+}
+
+function handleImageModalEscape(event) {
+  if (event.key === "Escape") {
+    closeImageModal();
+  }
+}
+
+// Close modal when clicking outside the image
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("imageModal");
+  if (modal) {
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        closeImageModal();
+      }
+    });
+  }
+});

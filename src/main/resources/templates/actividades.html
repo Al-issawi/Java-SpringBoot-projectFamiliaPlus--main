@@ -74,6 +74,13 @@
             <div class="activity-overlay">
               <i class="fas fa-swimmer"></i>
             </div>
+            <button
+              class="zoom-btn"
+              onclick="zoomImage(this)"
+              title="Ver imagen más grande"
+            >
+              <i class="fas fa-search-plus"></i>
+            </button>
           </div>
           <div class="activity-content">
             <h3 class="activity-title">Aquagym</h3>
@@ -97,6 +104,13 @@
             <div class="activity-overlay">
               <i class="fas fa-child"></i>
             </div>
+            <button
+              class="zoom-btn"
+              onclick="zoomImage(this)"
+              title="Ver imagen más grande"
+            >
+              <i class="fas fa-search-plus"></i>
+            </button>
           </div>
           <div class="activity-content">
             <h3 class="activity-title">Estiramientos</h3>
@@ -117,6 +131,13 @@
             <div class="activity-overlay">
               <i class="fas fa-music"></i>
             </div>
+            <button
+              class="zoom-btn"
+              onclick="zoomImage(this)"
+              title="Ver imagen más grande"
+            >
+              <i class="fas fa-search-plus"></i>
+            </button>
           </div>
           <div class="activity-content">
             <h3 class="activity-title">Coro</h3>
@@ -132,6 +153,12 @@
         </div>
       </div>
     </main>
+
+    <!-- Image Zoom Modal -->
+    <div id="imageModal" class="image-modal">
+      <span class="close-modal" onclick="closeImageModal()">&times;</span>
+      <img class="modal-content" id="modalImage" />
+    </div>
 
     <footer class="modern-footer">
       <div class="footer-content">
