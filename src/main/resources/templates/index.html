@@ -1,65 +1,135 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="utf-8" />
-<title>NOMBRE RESIDENCIA</title>
-<link rel="stylesheet" href="css/hoja1.css" />
-<script src="https://kit.fontawesome.com/3b7dae609c.js" crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
-</head>
-<body>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NOMBRE RESIDENCIA - Centro de Cuidados para Mayores</title>
+    <meta
+      name="description"
+      content="Centro especializado en cuidados para personas mayores con servicios integrales y atención personalizada."
+    />
+    <link rel="stylesheet" href="css/hoja1.css" />
+    <script
+      src="https://kit.fontawesome.com/3b7dae609c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header id="encabezado">
+      <nav class="nav">
+        <ul id="menu" role="navigation" aria-label="Menú principal">
+          <li class="elementoMenu">
+            <a th:href="@{/index}" aria-current="page">
+              <i class="fas fa-home" aria-hidden="true"></i> Home
+            </a>
+          </li>
+          <li class="elementoMenu">
+            <a th:href="@{/sobreNosotros}">
+              <i class="fas fa-users" aria-hidden="true"></i> Sobre Nosotros
+            </a>
+          </li>
+          <li class="elementoMenu">
+            <a th:href="@{/menu}">
+              <i class="fas fa-utensils" aria-hidden="true"></i> Menú mensual
+            </a>
+          </li>
+          <li class="elementoMenu">
+            <a th:href="@{/actividades}">
+              <i class="fas fa-calendar-alt" aria-hidden="true"></i> Actividades
+            </a>
+          </li>
+          <li class="elementoMenu">
+            <a th:href="@{/contacto}">
+              <i class="fas fa-phone" aria-hidden="true"></i> Contacto
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <h1 id="tituloEncabezado">NOMBRE RESIDENCIA</h1>
+      <h2 id="subtituloEncabezado">ESLOGAN RESIDENCIA</h2>
+    </header>
 
-	<header id="encabezado">
-		<nav>
-			<ul id="menu">
-				<li class="elementoMenu"><a th:href="@{/index}"> Home </a></li>
-				<li class="elementoMenu"><a th:href="@{/sobreNosotros}">
-						Sobre Nosotros </a></li>
-				<li class="elementoMenu"><a th:href="@{/menu}"> Menú
-						mensual </a></li>
-				<li class="elementoMenu"><a th:href="@{/actividades}">
-						Actividades </a></li>
-				<li class="elementoMenu"><a th:href="@{/contacto}">
-						Contacto </a></li>
-			</ul>
-		</nav>
-			<h1 id="tituloEncabezado">NOMBRE RESIDENCIA</h1>
-			<h2 id="subtituloEncabezado">ESLOGAN RESIDENCIA</h2>
-	</header>
-	<!--LOGIN	-->
-	<form th:action="@{/login}" th:object="${usuario}" method="post">
+    <main>
+      <!--LOGIN FORM-->
+      <form
+        th:action="@{/login}"
+        th:object="${usuario}"
+        method="post"
+        novalidate
+      >
+        <div class="contenedorLogin">
+          <h3 class="sr-only">Formulario de acceso</h3>
+          <label for="idUsuario"><b>Usuario</b></label>
+          <input
+            type="text"
+            placeholder="Introducir Usuario"
+            id="idUsuario"
+            th:field="*{idUsuario}"
+            required
+            aria-describedby="usuario-error"
+          />
 
-		<div class="contenedorLogin">
-			<label for="nombre"><b>Usuario</b></label> <input type="text"
-				placeholder="Introducir Usuario" id="idUsuario"
-				th:field="*{idUsuario}"> <label for="pass"><b>Contraseña</b></label>
-			<input type="password" placeholder="Introducir Contraseña"
-				th:field="*{contrasena}" id="pass">
+          <label for="pass"><b>Contraseña</b></label>
+          <input
+            type="password"
+            placeholder="Introducir Contraseña"
+            th:field="*{contrasena}"
+            id="pass"
+            required
+            aria-describedby="password-error"
+          />
 
-			<button type="submit">Entrar</button>
-			<!-- <label> <input type="checkbox" checked="checked"
-				name="remember"> Remember me
-			</label> -->
-	</form>
-	</div>
-	<div class="contenedorLogin">
-		<button onclick="modalForm1()">¿Olvidaste tu contraseña?</button>
-	</div>
+          <button type="submit">
+            <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Entrar
+          </button>
+        </div>
+      </form>
 
-	<!-- <div id="modalForm1()">
-		<div id="modalForm2()">
-			<p id="mensaje"></p>
-			<button onclick="CerrarF">Cerrar</button>
-		</div>
-	</div> -->
-	<footer id="pie">
-		<div id="contenedorIconos">
-			<i class="fa-brands fa-facebook-square"></i>
-            <i class="fa-brands fa-twitter-square"></i>
-            <i class="fa-brands fa-instagram-square"></i>
-		</div>
-	</footer>
+      <div class="contenedorLogin">
+        <button
+          onclick="modalForm1()"
+          type="button"
+          aria-describedby="modal-description"
+        >
+          <i class="fas fa-question-circle" aria-hidden="true"></i> ¿Olvidaste
+          tu contraseña?
+        </button>
+      </div>
+    </main>
 
-</body>
+    <!-- Enhanced Modal -->
+    <div
+      id="modalForm1"
+      role="dialog"
+      aria-labelledby="modal-title"
+      aria-describedby="modal-description"
+      aria-hidden="true"
+    >
+      <div id="modalForm2">
+        <h3 id="modal-title">Recuperar Contraseña</h3>
+        <p id="mensaje" id="modal-description">
+          Póngase en contacto con el administrador para recuperar su contraseña.
+        </p>
+        <button onclick="cerrarF()" type="button" aria-label="Cerrar ventana">
+          <i class="fas fa-times" aria-hidden="true"></i> Cerrar
+        </button>
+      </div>
+    </div>
 
+    <footer id="pie">
+      <div id="contenedorIconos" role="contentinfo" aria-label="Redes sociales">
+        <a href="#" aria-label="Síguenos en Facebook">
+          <i class="fa-brands fa-facebook-square" aria-hidden="true"></i>
+        </a>
+        <a href="#" aria-label="Síguenos en Twitter">
+          <i class="fa-brands fa-twitter-square" aria-hidden="true"></i>
+        </a>
+        <a href="#" aria-label="Síguenos en Instagram">
+          <i class="fa-brands fa-instagram-square" aria-hidden="true"></i>
+        </a>
+      </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+  </body>
 </html>
