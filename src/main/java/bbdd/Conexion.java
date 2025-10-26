@@ -12,10 +12,10 @@ import model.Usuario;
 */
 public class Conexion {
 
-	private static final String CONTROLADOR = "com.mysql.cj.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3306/familiaplus";
-	private static final String USUARIO = "root";
-	private static final String CLAVE = "0000";
+	private static final String CONTROLADOR = "org.postgresql.Driver";
+	private static final String URL = "jdbc:postgresql://ec2-54-246-185-161.eu-west-1.compute.amazonaws.com:5432/dc7179ss4bmd8p";
+	private static final String USUARIO = "gjilajvhgtbvqw";
+	private static final String CLAVE = "3412cd34d7289ef9d24bfb83e11e5c56b876da0bc9be888a5d5b077c32fe5217";
 
 	public static Connection conectar() {
 		Connection conexion = null;

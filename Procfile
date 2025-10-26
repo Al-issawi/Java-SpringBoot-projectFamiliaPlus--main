@@ -1,0 +1,1 @@
+web: java -jar target/familia_plus-0.0.1-SNAPSHOT.jar
