@@ -1,57 +1,158 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-		<title>NOMBRE RESIDENCIA</title>
-	<link rel="stylesheet" href="css/hoja2.css"  />
-	<script src="https://kit.fontawesome.com/3b7dae609c.js" crossorigin="anonymous"></script>
-</meta>
-</meta>
-</head>
-<body>
-		<nav>
-			<ul id="menu">
-				<li class="elementoMenu"><a th:href="@{/index}"> Home </a></li>
-				<li class="elementoMenu"><a th:href="@{/sobreNosotros}">
-						Sobre Nosotros </a></li>
-				<li class="elementoMenu"><a th:href="@{/menu}"> Menú mensual
-				</a></li>
-				<li class="elementoMenu"><a th:href="@{/actividades}">
-						Actividades </a></li>
-				<li class="elementoMenu"><a th:href="@{/contacto}"> Contacto
-				</a></li>
-			</ul>
-		</nav>
-		<h1 id="nombreVentana">Actividades</h1>
-<div class="contenedorActividades">
-                <div class="actividad">
-                    <div class="foto">
-                        <img src="media/Aquagym.jpeg" alt="aquagym" >
-                    </div>
-                    <p class="nombre">Aquagym</p>
-                    <p class="definicion">Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-                <div class="actividad">
-                    <div class="foto">
-                        <img src="media/Estiramientos.jpg"alt="estiramientos">
-                    </div>
-                    <p class="nombre">Estiramientos</p>
-                    <p class="definicion">Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-                <div class="actividad">
-                    <div class="foto">
-                        <img src="media/coro.jpg"alt="Coro">
-                    </div>
-                    <p class="nombre">Coro</p>
-                    <p class="definicion">Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actividades - FAMILIA-PLUS</title>
+    <link rel="stylesheet" href="css/hoja1.css" />
+    <link rel="stylesheet" href="css/login-enhancements.css" />
+    <script
+      src="https://kit.fontawesome.com/3b7dae609c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="modern-nav">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <h2>FAMILIA-PLUS</h2>
+          <p class="nav-subtitle">Cuidando con amor y profesionalidad</p>
+        </div>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle navigation"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item">
+            <a th:href="@{/index}" class="nav-link">
+              <i class="fas fa-home"></i> Inicio
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/sobreNosotros}" class="nav-link">
+              <i class="fas fa-heart"></i> Sobre Nosotros
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/menu}" class="nav-link">
+              <i class="fas fa-utensils"></i> Menú Mensual
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a th:href="@{/actividades}" class="nav-link">
+              <i class="fas fa-calendar-alt"></i> Actividades
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/contacto}" class="nav-link">
+              <i class="fas fa-phone"></i> Contacto
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="page-header">
+        <h1>Nuestras Actividades</h1>
+        <p class="page-subtitle">
+          Programas diseñados para promover el bienestar físico y mental
+        </p>
+      </div>
+
+      <div class="activities-container">
+        <div class="activity-card">
+          <div class="activity-image">
+            <img src="media/Aquagym.jpeg" alt="Aquagym - Ejercicio acuático" />
+            <div class="activity-overlay">
+              <i class="fas fa-swimmer"></i>
             </div>
-            <footer id="pie">
-		<div id="contenedorIconos">
-			<i class="fa-brands fa-facebook-square"></i>
-            <i class="fa-brands fa-twitter-square"></i>
-            <i class="fa-brands fa-instagram-square"></i>
-		</div>
-	</footer>
-</body>
+          </div>
+          <div class="activity-content">
+            <h3 class="activity-title">Aquagym</h3>
+            <p class="activity-description">
+              Ejercicios acuáticos de bajo impacto que mejoran la movilidad,
+              fortalecen los músculos y proporcionan relajación en un ambiente
+              seguro y divertido.
+            </p>
+            <div class="activity-schedule">
+              <i class="fas fa-clock"></i> Lunes y Miércoles 10:00 AM
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <img
+              src="media/Estiramientos.jpg"
+              alt="Estiramientos - Ejercicios de flexibilidad"
+            />
+            <div class="activity-overlay">
+              <i class="fas fa-child"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="activity-title">Estiramientos</h3>
+            <p class="activity-description">
+              Sesiones de estiramiento suave y ejercicios de flexibilidad para
+              mantener la movilidad, reducir la rigidez y mejorar el bienestar
+              general.
+            </p>
+            <div class="activity-schedule">
+              <i class="fas fa-clock"></i> Martes y Jueves 9:00 AM
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <img src="media/coro.jpg" alt="Coro - Actividad musical" />
+            <div class="activity-overlay">
+              <i class="fas fa-music"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="activity-title">Coro</h3>
+            <p class="activity-description">
+              Actividad musical que estimula la memoria, fomenta la
+              socialización y proporciona alegría a través del canto grupal de
+              canciones tradicionales y populares.
+            </p>
+            <div class="activity-schedule">
+              <i class="fas fa-clock"></i> Viernes 4:00 PM
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="modern-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>FAMILIA-PLUS</h3>
+          <p>Cuidando con amor y profesionalidad</p>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <i class="fab fa-facebook-square"></i>
+            <i class="fab fa-twitter-square"></i>
+            <i class="fab fa-instagram-square"></i>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FAMILIA-PLUS. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+  </body>
 </html>

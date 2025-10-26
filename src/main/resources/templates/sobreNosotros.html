@@ -1,47 +1,244 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>NOMBRE RESIDENCIA</title>
-	<link rel="stylesheet" href="css/hoja2.css"  />
-	<script src="https://kit.fontawesome.com/3b7dae609c.js" crossorigin="anonymous"></script>
-</head>
-<body>
-<nav>
-			<ul id="menu">
-				<li class="elementoMenu"><a th:href="@{/index}"> Home </a></li>
-				<li class="elementoMenu"><a th:href="@{/sobreNosotros}">
-						Sobre Nosotros </a></li>
-				<li class="elementoMenu"><a th:href="@{/menu}"> Menú mensual
-				</a></li>
-				<li class="elementoMenu"><a th:href="@{/actividades}">
-						Actividades </a></li>
-				<li class="elementoMenu"><a th:href="@{/contacto}"> Contacto
-				</a></li>
-			</ul>
-		</nav>
-		<h1 id="nombreVentana">Sobre nosotros</h1>
-<div id="contenedorColumnas">
-                <div class="columnas">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-                <div class="columnas">
-                   <iframe src="https://www.youtube.com/embed/Mj6M22zuLL0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                
-                </div>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMILIA-PLUS - Sobre Nosotros</title>
+    <meta
+      name="description"
+      content="Conozca más sobre FAMILIA-PLUS y nuestro compromiso con el cuidado de personas mayores."
+    />
+    <link rel="stylesheet" href="css/hoja1.css" />
+    <link rel="stylesheet" href="css/login-enhancements.css" />
+    <script
+      src="https://kit.fontawesome.com/3b7dae609c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="modern-nav">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <h2>FAMILIA-PLUS</h2>
+          <p class="nav-subtitle">Cuidando con amor y profesionalidad</p>
+        </div>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle navigation"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item">
+            <a th:href="@{/index}" class="nav-link">
+              <i class="fas fa-home"></i> Inicio
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a th:href="@{/sobreNosotros}" class="nav-link">
+              <i class="fas fa-heart"></i> Sobre Nosotros
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/menu}" class="nav-link">
+              <i class="fas fa-utensils"></i> Menú Mensual
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/actividades}" class="nav-link">
+              <i class="fas fa-calendar-alt"></i> Actividades
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/contacto}" class="nav-link">
+              <i class="fas fa-phone"></i> Contacto
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="page-header">
+        <h1>Sobre Nosotros</h1>
+        <p class="page-subtitle">
+          Conoce nuestro compromiso con el cuidado especializado
+        </p>
+      </div>
+
+      <div class="activities-container">
+        <div class="activity-card">
+          <div class="activity-image">
+            <img
+              src="media/cuidado-personalizado.jpg"
+              alt="Cuidado Personalizado"
+              style="object-fit: cover; width: 100%; height: 200px"
+            />
+            <div class="activity-overlay">
+              <i class="fas fa-heart"></i>
             </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="activity-title">Cuidado Personalizado</h3>
+            <p class="activity-description">
+              En FAMILIA-PLUS, cada residente recibe atención individualizada
+              adaptada a sus necesidades específicas. Nuestro equipo desarrolla
+              planes de cuidado personalizados que garantizan el máximo
+              bienestar.
+            </p>
+            <div class="activity-schedule">
+              <i class="fas fa-clock"></i> Atención 24/7
+            </div>
+          </div>
+        </div>
 
+        <div class="activity-card">
+          <div class="activity-image">
+            <img
+              src="media/equipo-profesional.jpg"
+              alt="Equipo Profesional"
+              style="object-fit: cover; width: 100%; height: 200px"
+            />
+            <div class="activity-overlay">
+              <i class="fas fa-user-md"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="activity-title">Equipo Profesional</h3>
+            <p class="activity-description">
+              Contamos con profesionales altamente capacitados: enfermeros,
+              terapeutas, cuidadores y médicos especializados en geriatría que
+              trabajan con dedicación y amor.
+            </p>
+            <div class="activity-schedule">
+              <i class="fas fa-graduation-cap"></i> Formación continua
+            </div>
+          </div>
+        </div>
 
-	</div>
-<footer id="pie">
-		<div id="contenedorIconos">
-			<i class="fa-brands fa-facebook-square"></i>
-            <i class="fa-brands fa-twitter-square"></i>
-            <i class="fa-brands fa-instagram-square"></i>
-		</div>
-	</footer>
-	</body>
-	</html>
+        <div class="activity-card">
+          <div class="activity-image">
+            <img
+              src="media/ambiente-familiar.jpg"
+              alt="Ambiente Familiar"
+              style="object-fit: cover; width: 100%; height: 200px"
+            />
+            <div class="activity-overlay">
+              <i class="fas fa-home"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="activity-title">Ambiente Familiar</h3>
+            <p class="activity-description">
+              Creamos un ambiente cálido y acogedor donde cada residente se
+              siente como en casa. Fomentamos las relaciones interpersonales y
+              el sentido de comunidad.
+            </p>
+            <div class="activity-schedule">
+              <i class="fas fa-users"></i> Vida en comunidad
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <img
+              src="media/instalaciones-modernas.jpg"
+              alt="Instalaciones Modernas"
+              style="object-fit: cover; width: 100%; height: 200px"
+            />
+            <div class="activity-overlay">
+              <i class="fas fa-building"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="activity-title">Instalaciones Modernas</h3>
+            <p class="activity-description">
+              Nuestras instalaciones cuentan con la tecnología más avanzada y
+              están diseñadas para garantizar la seguridad, comodidad y
+              accesibilidad de todos nuestros residentes.
+            </p>
+            <div class="activity-schedule">
+              <i class="fas fa-wheelchair"></i> Totalmente accesible
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <img
+              src="media/nutricion-especializada.jpg"
+              alt="Nutrición Especializada"
+              style="object-fit: cover; width: 100%; height: 200px"
+            />
+            <div class="activity-overlay">
+              <i class="fas fa-utensils"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="activity-title">Nutrición Especializada</h3>
+            <p class="activity-description">
+              Ofrecemos menús elaborados por nutricionistas especializados en
+              geriatría, adaptados a las necesidades dietéticas específicas de
+              cada residente.
+            </p>
+            <div class="activity-schedule">
+              <i class="fas fa-apple-alt"></i> Dietas personalizadas
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <img
+              src="media/bienestar-integral.jpg"
+              alt="Bienestar Integral"
+              style="object-fit: cover; width: 100%; height: 200px"
+            />
+            <div class="activity-overlay">
+              <i class="fas fa-spa"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="activity-title">Bienestar Integral</h3>
+            <p class="activity-description">
+              Promovemos el bienestar físico, mental y emocional a través de
+              terapias especializadas, actividades recreativas y programas de
+              estimulación cognitiva.
+            </p>
+            <div class="activity-schedule">
+              <i class="fas fa-brain"></i> Estimulación cognitiva
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="modern-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>FAMILIA-PLUS</h3>
+          <p>Cuidando con amor y profesionalidad</p>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <i class="fab fa-facebook-square"></i>
+            <i class="fab fa-twitter-square"></i>
+            <i class="fab fa-instagram-square"></i>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FAMILIA-PLUS. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

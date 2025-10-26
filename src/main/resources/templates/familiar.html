@@ -1,70 +1,148 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8">
-		<title>NOMBRE RESIDENCIA</title>
-	<link rel="stylesheet" href="css/hoja2.css"  />
-</head>
-<body>
-	<header id="encabezado">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Familiar - FAMILIA-PLUS</title>
+    <link rel="stylesheet" href="css/hoja1.css" />
+    <script
+      src="https://kit.fontawesome.com/3b7dae609c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="modern-nav">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <h2>FAMILIA-PLUS</h2>
+          <p class="nav-subtitle">Cuidando con amor y profesionalidad</p>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a th:href="@{/index}" class="nav-link">
+              <i class="fas fa-home"></i> Inicio
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/sobreNosotros}" class="nav-link">
+              <i class="fas fa-heart"></i> Sobre Nosotros
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/menu}" class="nav-link">
+              <i class="fas fa-utensils"></i> Menú Mensual
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/actividades}" class="nav-link">
+              <i class="fas fa-calendar-alt"></i> Actividades
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/contacto}" class="nav-link">
+              <i class="fas fa-phone"></i> Contacto
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
- 		<nav>
-			<ul id="menu">
-				<li class="elementoMenu"><a th:href="@{/index}"> Home </a></li>
-				<li class="elementoMenu"><a th:href="@{/sobreNosotros}">
-						Sobre Nosotros </a></li>
-				<li class="elementoMenu"><a th:href="@{/menu}"> Menú mensual
-				</a></li>
-				<li class="elementoMenu"><a th:href="@{/actividades}">
-						Actividades </a></li>
-				<li class="elementoMenu"><a th:href="@{/contacto}"> Contacto
-				</a></li>
-			</ul>
-		</nav>
+    <main class="main-content">
+      <div class="page-header">
+        <h1><i class="fas fa-user-friends"></i> Portal Familiar</h1>
+        <p class="page-subtitle">
+          Información actualizada sobre el cuidado de su ser querido
+        </p>
+      </div>
 
- 		<h1 id="nombreVentana">Bienvenido</h1>
+      <div class="family-dashboard">
+        <section class="resident-info-section">
+          <h2><i class="fas fa-user-circle"></i> Información del Residente</h2>
+          <div class="resident-card">
+            <div class="resident-details">
+              <div class="detail-item">
+                <span class="detail-label">Nombre:</span>
+                <span class="detail-value" th:text="${residente.nombre}"
+                  >-</span
+                >
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Apellidos:</span>
+                <span class="detail-value" th:text="${residente.apellido}"
+                  >-</span
+                >
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Edad:</span>
+                <span class="detail-value" th:text="${residente.edad}">-</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Habitación:</span>
+                <span class="detail-value" th:text="${residente.n_hab}">-</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-	</header>
-	
-	
-	<h2 class=nombreTabla>Datos de su familiar</h2>
-	<div class="contenedorTabla1">
-  			 		<table border="1" width="1000">
-    <thead>
-    <tr>
-        <td>Nombre </td>
-        <td>Apellido </td>
-         <td>Edad </td>
-        <td>Número de habitación</td>
-            </tr>
-    </thead>
-<tr >
-    <td th:text="${residente.nombre}"></td>
-    <td th:text="${residente.apellido}"></td>
-    <td th:text="${residente.edad}"></td>
-    <td th:text="${residente.n_hab}"></td>
-</tr>
+        <section class="care-log-section">
+          <h2><i class="fas fa-notes-medical"></i> Registro de Cuidados</h2>
+          <div class="care-log-container">
+            <div class="care-item" th:each="cuidado: ${residente.cuidados}">
+              <div class="care-date">
+                <i class="fas fa-calendar-day"></i>
+                <span th:text="${cuidado.fecha}">Fecha</span>
+              </div>
+              <div class="care-description">
+                <i class="fas fa-clipboard-list"></i>
+                <p th:text="${cuidado.descripcion}">Descripción del cuidado</p>
+              </div>
+            </div>
+            <div
+              class="no-care-records"
+              th:if="${#lists.isEmpty(residente.cuidados)}"
+            >
+              <i class="fas fa-info-circle"></i>
+              <p>No hay registros de cuidados disponibles en este momento.</p>
+            </div>
+          </div>
+        </section>
 
-</table>
-	 </div>
+        <section class="family-actions">
+          <h2><i class="fas fa-tools"></i> Acciones Disponibles</h2>
+          <div class="action-buttons">
+            <button class="action-btn primary">
+              <i class="fas fa-download"></i>
+              Descargar Informe
+            </button>
+            <button class="action-btn secondary">
+              <i class="fas fa-envelope"></i>
+              Contactar Personal
+            </button>
+            <button class="action-btn tertiary">
+              <i class="fas fa-calendar-plus"></i>
+              Solicitar Visita
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
 
-	 
-	 
-	<h2 class=nombreTabla>Cuidados</h2>
-	<div class="contenedorTabla2">
-	<table border="1" width="1000">
-    <thead>
-    <tr>
-        <td>Fecha </td>
-        <td>Descripción </td>
-       
-            </tr>
-    </thead>
-<tr th:each="cuidado: ${residente.cuidados}">
-    <td th:text="${cuidado.fecha}"></td>
-    <td th:text="${cuidado.descripcion}"></td>
-   </tr>
-</table>
-	 </div>
-</body>
+    <footer class="modern-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>FAMILIA-PLUS</h3>
+          <p>Cuidando con amor y profesionalidad</p>
+        </div>
+        <div class="footer-section">
+          <h4>Portal Familiar</h4>
+          <p>Mantente conectado con el cuidado de tu ser querido</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FAMILIA-PLUS. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+  </body>
 </html>

@@ -1,22 +1,22 @@
 //Enhanced Modal functionality with better UX
 function modalForm1() {
   const modal = document.getElementById("modalForm1");
-  const contenedor = document.getElementById("contenedor");
 
-  if (modal && contenedor) {
-    modal.style.display = "block";
-    contenedor.style.overflow = "hidden";
+  if (modal) {
+    modal.style.display = "flex";
+    modal.classList.add("show");
     document.body.style.overflow = "hidden"; // Prevent body scroll
 
-    // Add content to modal
-    const mensaje = document.getElementById("mensaje");
-    if (mensaje) {
-      mensaje.innerHTML =
-        "Póngase en contacto con el administrador para recuperar su contraseña.";
-    }
+    // Set aria-hidden to false for accessibility
+    modal.setAttribute("aria-hidden", "false");
 
     // Focus trap for accessibility
-    modal.focus();
+    const firstFocusable = modal.querySelector(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (firstFocusable) {
+      firstFocusable.focus();
+    }
 
     // Close on Escape key
     document.addEventListener("keydown", handleEscapeKey);
@@ -29,12 +29,16 @@ function modalForm1() {
 //Enhanced function to close modal
 function cerrarF() {
   const modal = document.getElementById("modalForm1");
-  const contenedor = document.getElementById("contenedor");
 
-  if (modal && contenedor) {
-    modal.style.display = "none";
-    contenedor.style.overflow = "auto";
-    document.body.style.overflow = "auto"; // Restore body scroll
+  if (modal) {
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden", "true");
+
+    // Add fade out animation
+    setTimeout(() => {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto"; // Restore body scroll
+    }, 300);
 
     // Remove event listeners
     document.removeEventListener("keydown", handleEscapeKey);
@@ -194,4 +198,185 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+});
+
+// Enhanced Login Form Functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.getElementById("loginForm");
+  const userInput = document.getElementById("idUsuario");
+  const passwordInput = document.getElementById("pass");
+  // const togglePassword = document.getElementById("togglePassword"); // Removed eye icon
+  const loginBtn = document.getElementById("loginBtn");
+
+  // Password Toggle Functionality - REMOVED
+  // if (togglePassword && passwordInput) {
+  //   togglePassword.addEventListener("click", function () {
+  //     const type =
+  //       passwordInput.getAttribute("type") === "password" ? "text" : "password";
+  //     passwordInput.setAttribute("type", type);
+
+  //     // Toggle icon
+  //     const icon = this.querySelector("i");
+  //     if (type === "text") {
+  //       icon.classList.remove("fa-eye");
+  //       icon.classList.add("fa-eye-slash");
+  //     } else {
+  //       icon.classList.remove("fa-eye-slash");
+  //       icon.classList.add("fa-eye");
+  //     }
+  //   });
+  // }
+
+  // Real-time validation
+  if (userInput) {
+    userInput.addEventListener("blur", function () {
+      validateField(
+        this,
+        "usuario-error",
+        "Por favor, introduce un nombre de usuario válido"
+      );
+    });
+
+    userInput.addEventListener("input", function () {
+      clearError("usuario-error");
+      this.classList.remove("error");
+    });
+  }
+
+  if (passwordInput) {
+    passwordInput.addEventListener("blur", function () {
+      validateField(
+        this,
+        "password-error",
+        "La contraseña debe tener al menos 3 caracteres"
+      );
+    });
+
+    passwordInput.addEventListener("input", function () {
+      clearError("password-error");
+      this.classList.remove("error");
+    });
+  }
+
+  // Enhanced form submission
+  if (loginForm) {
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let isValid = true;
+
+      // Validate username
+      if (
+        !validateField(
+          userInput,
+          "usuario-error",
+          "Por favor, introduce un nombre de usuario válido"
+        )
+      ) {
+        isValid = false;
+      }
+
+      // Validate password
+      if (
+        !validateField(
+          passwordInput,
+          "password-error",
+          "La contraseña debe tener al menos 3 caracteres"
+        )
+      ) {
+        isValid = false;
+      }
+
+      if (isValid) {
+        showLoading();
+
+        // Simulate brief loading then submit
+        setTimeout(() => {
+          this.submit(); // Actually submit the form
+        }, 800);
+      }
+    });
+  }
+
+  function validateField(field, errorId, message) {
+    const errorElement = document.getElementById(errorId);
+
+    if (!field || !field.value.trim() || field.value.length < 3) {
+      showError(errorElement, message);
+      field.classList.add("error");
+      return false;
+    } else {
+      clearError(errorId);
+      field.classList.remove("error");
+      return true;
+    }
+  }
+
+  function showError(errorElement, message) {
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.classList.add("show");
+    }
+  }
+
+  function clearError(errorId) {
+    const errorElement = document.getElementById(errorId);
+    if (errorElement) {
+      errorElement.textContent = "";
+      errorElement.classList.remove("show");
+    }
+  }
+
+  function showLoading() {
+    if (loginBtn) {
+      loginBtn.classList.add("loading");
+      loginBtn.disabled = true;
+    }
+  }
+
+  function hideLoading() {
+    if (loginBtn) {
+      loginBtn.classList.remove("loading");
+      loginBtn.disabled = false;
+    }
+  }
+});
+
+// Enhanced Mobile Navigation
+document.addEventListener("DOMContentLoaded", function () {
+  const navToggle = document.getElementById("navToggle");
+  const navMenu = document.getElementById("navMenu");
+
+  if (navToggle && navMenu) {
+    navToggle.addEventListener("click", function () {
+      this.classList.toggle("active");
+      navMenu.classList.toggle("active");
+
+      // Update aria attributes for accessibility
+      const isExpanded = navMenu.classList.contains("active");
+      this.setAttribute("aria-expanded", isExpanded);
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", function (event) {
+      if (
+        !navToggle.contains(event.target) &&
+        !navMenu.contains(event.target)
+      ) {
+        navToggle.classList.remove("active");
+        navMenu.classList.remove("active");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Close mobile menu when clicking on a nav link
+    const navLinks = navMenu.querySelectorAll(".nav-link");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", function () {
+        navToggle.classList.remove("active");
+        navMenu.classList.remove("active");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
 });

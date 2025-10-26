@@ -3,130 +3,221 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NOMBRE RESIDENCIA - Centro de Cuidados para Mayores</title>
+    <title>FAMILIA-PLUS - Centro de Cuidados para Mayores</title>
     <meta
       name="description"
       content="Centro especializado en cuidados para personas mayores con servicios integrales y atención personalizada."
     />
     <link rel="stylesheet" href="css/hoja1.css" />
+    <link rel="stylesheet" href="css/login-enhancements.css" />
     <script
       src="https://kit.fontawesome.com/3b7dae609c.js"
       crossorigin="anonymous"
     ></script>
   </head>
   <body>
-    <header id="encabezado">
-      <nav class="nav">
-        <ul id="menu" role="navigation" aria-label="Menú principal">
-          <li class="elementoMenu">
-            <a th:href="@{/index}" aria-current="page">
-              <i class="fas fa-home" aria-hidden="true"></i> Home
+    <nav class="modern-nav">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <h2>FAMILIA-PLUS</h2>
+          <p class="nav-subtitle">Cuidando con amor y profesionalidad</p>
+        </div>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle navigation"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item active">
+            <a th:href="@{/index}" class="nav-link">
+              <i class="fas fa-home"></i> Inicio
             </a>
           </li>
-          <li class="elementoMenu">
-            <a th:href="@{/sobreNosotros}">
-              <i class="fas fa-users" aria-hidden="true"></i> Sobre Nosotros
+          <li class="nav-item">
+            <a th:href="@{/sobreNosotros}" class="nav-link">
+              <i class="fas fa-heart"></i> Sobre Nosotros
             </a>
           </li>
-          <li class="elementoMenu">
-            <a th:href="@{/menu}">
-              <i class="fas fa-utensils" aria-hidden="true"></i> Menú mensual
+          <li class="nav-item">
+            <a th:href="@{/menu}" class="nav-link">
+              <i class="fas fa-utensils"></i> Menú Mensual
             </a>
           </li>
-          <li class="elementoMenu">
-            <a th:href="@{/actividades}">
-              <i class="fas fa-calendar-alt" aria-hidden="true"></i> Actividades
+          <li class="nav-item">
+            <a th:href="@{/actividades}" class="nav-link">
+              <i class="fas fa-calendar-alt"></i> Actividades
             </a>
           </li>
-          <li class="elementoMenu">
-            <a th:href="@{/contacto}">
-              <i class="fas fa-phone" aria-hidden="true"></i> Contacto
+          <li class="nav-item">
+            <a th:href="@{/contacto}" class="nav-link">
+              <i class="fas fa-phone"></i> Contacto
             </a>
           </li>
         </ul>
-      </nav>
-      <h1 id="tituloEncabezado">NOMBRE RESIDENCIA</h1>
-      <h2 id="subtituloEncabezado">ESLOGAN RESIDENCIA</h2>
-    </header>
+      </div>
+    </nav>
 
-    <main>
-      <!--LOGIN FORM-->
-      <form
-        th:action="@{/login}"
-        th:object="${usuario}"
-        method="post"
-        novalidate
-      >
-        <div class="contenedorLogin">
-          <h3 class="sr-only">Formulario de acceso</h3>
-          <label for="idUsuario"><b>Usuario</b></label>
-          <input
-            type="text"
-            placeholder="Introducir Usuario"
-            id="idUsuario"
-            th:field="*{idUsuario}"
-            required
-            aria-describedby="usuario-error"
-          />
-
-          <label for="pass"><b>Contraseña</b></label>
-          <input
-            type="password"
-            placeholder="Introducir Contraseña"
-            th:field="*{contrasena}"
-            id="pass"
-            required
-            aria-describedby="password-error"
-          />
-
-          <button type="submit">
-            <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Entrar
-          </button>
+    <main class="main-content">
+      <div class="page-header">
+        <h1>Bienvenido a FAMILIA-PLUS</h1>
+        <p class="page-subtitle">
+          Acceso al sistema de gestión de cuidados especializados
+        </p>
+        <!-- Error message display -->
+        <div th:if="${error}" class="error-alert">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span th:text="${error}"></span>
         </div>
-      </form>
-
-      <div class="contenedorLogin">
-        <button
-          onclick="modalForm1()"
-          type="button"
-          aria-describedby="modal-description"
+      </div>
+      <!--LOGIN FORM-->
+      <div class="login-container">
+        <form
+          th:action="@{/login}"
+          th:object="${usuario}"
+          method="post"
+          novalidate
+          class="login-form"
+          id="loginForm"
         >
-          <i class="fas fa-question-circle" aria-hidden="true"></i> ¿Olvidaste
-          tu contraseña?
-        </button>
+          <div class="contenedorLogin">
+            <h3 class="login-title">
+              <i class="fas fa-sign-in-alt"></i> Acceso al Sistema
+            </h3>
+
+            <div class="form-group">
+              <label for="idUsuario"><b>Usuario</b></label>
+              <div class="input-container">
+                <input
+                  type="text"
+                  placeholder="Introducir Usuario"
+                  id="idUsuario"
+                  th:field="*{idUsuario}"
+                  required
+                  aria-describedby="usuario-error"
+                  class="form-input"
+                />
+                <div class="input-icon">
+                  <i class="fas fa-user"></i>
+                </div>
+              </div>
+              <div class="error-message" id="usuario-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="pass"><b>Contraseña</b></label>
+              <div class="input-container">
+                <input
+                  type="password"
+                  placeholder="Introducir Contraseña"
+                  th:field="*{contrasena}"
+                  id="pass"
+                  required
+                  aria-describedby="password-error"
+                  class="form-input"
+                />
+                <div class="input-icon">
+                  <i class="fas fa-lock"></i>
+                </div>
+              </div>
+              <div class="error-message" id="password-error"></div>
+            </div>
+
+            <button type="submit" class="login-btn" id="loginBtn">
+              <span class="btn-text">
+                <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Entrar
+              </span>
+              <span class="btn-loader" style="display: none">
+                <i class="fas fa-spinner fa-spin"></i> Iniciando sesión...
+              </span>
+            </button>
+
+            <button
+              onclick="modalForm1()"
+              type="button"
+              class="forgot-password-btn"
+              aria-describedby="modal-description"
+            >
+              <i class="fas fa-question-circle" aria-hidden="true"></i>
+              ¿Olvidaste tu contraseña?
+            </button>
+          </div>
+        </form>
       </div>
     </main>
 
     <!-- Enhanced Modal -->
     <div
       id="modalForm1"
+      class="modal-overlay"
       role="dialog"
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
       aria-hidden="true"
     >
-      <div id="modalForm2">
-        <h3 id="modal-title">Recuperar Contraseña</h3>
-        <p id="mensaje" aria-describedby="modal-description">
-          Póngase en contacto con el administrador para recuperar su contraseña.
-        </p>
-        <button onclick="cerrarF()" type="button" aria-label="Cerrar ventana">
-          <i class="fas fa-times" aria-hidden="true"></i> Cerrar
-        </button>
+      <div id="modalForm2" class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-title">
+            <i class="fas fa-key"></i> Recuperar Contraseña
+          </h3>
+          <button
+            onclick="cerrarF()"
+            type="button"
+            class="modal-close"
+            aria-label="Cerrar ventana"
+          >
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <p id="mensaje" aria-describedby="modal-description">
+            Póngase en contacto con el administrador para recuperar su
+            contraseña.
+          </p>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+34 123 456 789</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>admin@familia-plus.com</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button onclick="cerrarF()" type="button" class="modal-btn">
+            <i class="fas fa-check" aria-hidden="true"></i> Entendido
+          </button>
+        </div>
       </div>
     </div>
 
-    <footer id="pie">
-      <div id="contenedorIconos" role="contentinfo" aria-label="Redes sociales">
-        <a href="#" aria-label="Síguenos en Facebook">
-          <i class="fa-brands fa-facebook-square" aria-hidden="true"></i>
-        </a>
-        <a href="#" aria-label="Síguenos en Twitter">
-          <i class="fa-brands fa-twitter-square" aria-hidden="true"></i>
-        </a>
-        <a href="#" aria-label="Síguenos en Instagram">
-          <i class="fa-brands fa-instagram-square" aria-hidden="true"></i>
-        </a>
+    <footer class="modern-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>FAMILIA-PLUS</h3>
+          <p>Cuidando con amor y profesionalidad</p>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <i class="fab fa-facebook-square"></i>
+            <i class="fab fa-twitter-square"></i>
+            <i class="fab fa-instagram-square"></i>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FAMILIA-PLUS. Todos los derechos reservados.</p>
       </div>
     </footer>
 
