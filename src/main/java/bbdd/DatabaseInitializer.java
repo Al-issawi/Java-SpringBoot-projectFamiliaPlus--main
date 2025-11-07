@@ -22,13 +22,14 @@ public class DatabaseInitializer {
 
     @PostConstruct
     public void initDatabase() {
-        System.out.println("Iniciando configuración de base de datos...");
+        String environment = System.getenv("DATABASE_URL") != null ? "Producción (PostgreSQL)" : "Local (MySQL)";
+        System.out.println("Iniciando configuración de base de datos - " + environment);
 
         Connection connection = ConexionBBDD.conectarBBDD();
         if (connection != null) {
             try {
                 executeSqlScript(connection);
-                System.out.println("Base de datos inicializada correctamente");
+                System.out.println("Base de datos inicializada correctamente - " + environment);
             } catch (Exception e) {
                 System.err.println("Error al inicializar la base de datos: " + e.getMessage());
                 e.printStackTrace();
@@ -45,8 +46,11 @@ public class DatabaseInitializer {
     }
 
     private void executeSqlScript(Connection connection) throws Exception {
+        // Determinar qué script usar basado en el entorno
+        String scriptName = System.getenv("DATABASE_URL") != null ? "setup_postgresql.sql" : "setup_simple.sql";
+
         // Leer el archivo SQL desde el classpath
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("database_init.sql");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(scriptName);
 
         if (inputStream == null) {
             System.out.println(

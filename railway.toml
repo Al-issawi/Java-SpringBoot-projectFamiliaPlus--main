@@ -1,0 +1,11 @@
+# Railway Deployment Configuration
+# This file helps Railway understand how to deploy your Spring Boot app
+
+# Build command - Railway will run this to compile your app
+build = "mvn clean package -DskipTests"
+
+# Start command - How Railway should start your app  
+start = "java -Dserver.port=$PORT -jar target/*.jar"
+
+# Environment - Production profile
+environment = "production"
