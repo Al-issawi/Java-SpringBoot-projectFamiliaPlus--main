@@ -14,10 +14,10 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	private String tipo;
-		
-	
+
 	/**
 	 * Busca información del usuario en función del login y pass
+	 * 
 	 * @author Irene Agea
 	 * @param idUsuario
 	 * @param pass
@@ -27,10 +27,10 @@ public class Usuario {
 		Usuario usuario = new Usuario();
 
 		Connection con = ConexionBBDD.conectarBBDD();
-		
+
 		try {
 			PreparedStatement stm;
-			stm = con.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ? AND contraseña = ?");
+			stm = con.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ? AND contrasena = ?");
 
 			stm.setString(1, idUsuario);
 			stm.setString(2, pass);
@@ -40,16 +40,21 @@ public class Usuario {
 				usuario.setNombre(rs.getString("nombre"));
 				usuario.setApellido(rs.getString("apellido"));
 				usuario.setTipo(rs.getString("tipo"));
+				usuario.setContrasena(pass); // Set password as well
+			} else {
+				// User not found, return null or empty user
+				return null;
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
 
 		return usuario;
 
 	}
-	
+
 	public String getIdUsuario() {
 		return idUsuario;
 	}
@@ -97,7 +102,5 @@ public class Usuario {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
 
-	
 }

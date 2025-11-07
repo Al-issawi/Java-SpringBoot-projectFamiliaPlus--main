@@ -30,6 +30,11 @@
 	<form th:action="@{/login}" th:object="${usuario}" method="post">
 
 		<div class="contenedorLogin">
+			<!-- Show error message if login failed -->
+			<div th:if="${error}" style="color: red; margin-bottom: 10px;">
+				<span th:text="${error}"></span>
+			</div>
+			
 			<label for="nombre"><b>Usuario</b></label> <input type="text"
 				placeholder="Introducir Usuario" id="idUsuario"
 				th:field="*{idUsuario}"> <label for="pass"><b>Contraseña</b></label>
