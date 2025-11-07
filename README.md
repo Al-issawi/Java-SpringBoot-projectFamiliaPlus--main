@@ -1,173 +1,168 @@
-# FAMILIA-PLUS 🏠 - Gestor de Residencias
+# FAMILIA-PLUS - Sistema de Gestión para Residencias
 
-## 📋 Descripción del Proyecto
+Hey! Este es nuestro proyecto final para el curso de DAW. Desarrollamos un sistema web para gestionar residencias de ancianos.
 
-Sistema integral de gestión para residencias de ancianos que permite administrar residentes, personal, familiares, actividades y cuidados médicos de manera eficiente y organizada.
+## ¿Qué hace la aplicación?
 
-## 🔧 Tecnologías Utilizadas
+Básicamente, permite administrar toda la información de una residencia: los residentes, el personal que trabaja allí, sus familiares, las actividades que se realizan y llevar un registro de los cuidados médicos. La idea es facilitar el trabajo del día a día en este tipo de centros.
 
-- **Backend:** Java 11 + Spring Boot 2.6.7
-- **Base de Datos:** MySQL 8.0
-- **Frontend:** HTML5 + CSS3 + JavaScript + Thymeleaf
-- **Herramientas:** Maven, Git, Railway (Deployment)
+## Stack tecnológico
 
-## 📊 Estructura de la Base de Datos
+Decidimos usar:
 
-### Tablas Principales:
+- **Backend:** Java con Spring Boot (versión 2.6.7)
+- **Base de datos:** MySQL 8.0
+- **Frontend:** HTML, CSS, JavaScript y Thymeleaf para las plantillas
+- **Otras herramientas:** Maven para gestión de dependencias, Git para control de versiones y Railway para el deploy
 
-- **`usuario`** - Gestión de usuarios del sistema (admin, personal, familiar)
-- **`residente`** - Información de los residentes de la residencia
-- **`personal`** - Datos del personal trabajador
-- **`familiar`** - Información de familiares de los residentes
-- **`cuidado`** - Registro de cuidados médicos y atención
-- **`actividad`** - Programación de actividades y eventos
+## Base de datos
 
-## 🚀 Configuración Local
+Creamos 6 tablas principales para organizar toda la información:
 
-### Prerrequisitos:
+- **usuario** → Los diferentes tipos de usuarios (administradores, personal, familiares)
+- **residente** → Información personal de cada residente
+- **personal** → Datos de empleados y trabajadores
+- **familiar** → Contactos familiares de los residentes
+- **cuidado** → Historial de cuidados y tratamientos médicos
+- **actividad** → Actividades programadas (ejercicios, talleres, etc.)
 
-- Java 11 o superior
+## Cómo configurarlo en local
+
+### Lo que necesitas tener instalado:
+
+- Java 11 (o más reciente)
 - MySQL 8.0
 - Maven 3.6+
 
-### Pasos de Instalación:
+### Pasos para hacerlo funcionar:
 
-1. **Clonar el repositorio:**
+1. **Clona el repo:**
 
    ```bash
    git clone https://github.com/Al-issawi/projectFamiliaPlus-main.git
    cd projectFamiliaPlus-master
    ```
 
-2. **Configurar MySQL:**
+2. **Configura MySQL:**
+   Primero crea la base de datos:
 
    ```sql
-   # Crear base de datos
    mysql -u root -p
    CREATE DATABASE familiaplus CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
    ```
 
-3. **Ejecutar script de inicialización:**
+3. **Inicializa las tablas:**
+   Ejecuta nuestro script que crea todo automáticamente:
 
    ```bash
    mysql -u root -p < setup_simple.sql
    ```
 
-4. **Configurar credenciales:**
+4. **Ajusta las credenciales:**
+   Edita el archivo `src/main/resources/application.properties` y pon tu usuario/contraseña de MySQL
 
-   - Editar `src/main/resources/application.properties`
-   - Actualizar usuario y contraseña de MySQL
-
-5. **Ejecutar la aplicación:**
+5. **Arranca la app:**
 
    ```bash
    mvn spring-boot:run
    ```
 
-6. **Acceder a la aplicación:**
-   - URL: http://localhost:9000
+6. **¡Listo!**
+   Abre http://localhost:9000 en tu navegador
 
-## 🌐 Despliegue en Producción
+## Deploy en producción
 
-### Railway Deployment:
+Usamos Railway para el despliegue porque es súper fácil. La app detecta automáticamente si está en local o producción:
 
-- **URL de Producción:** [Tu URL de Railway]
-- **Base de Datos:** PostgreSQL (Automática)
-- **Variables de Entorno:**
-  - `DATABASE_URL` - URL de conexión PostgreSQL
-  - `PORT` - Puerto del servidor (automático)
+- **Local:** Usa MySQL en tu máquina (localhost:3306)
+- **Producción:** Se conecta automáticamente a la base de datos que Railway te asigna
 
-### Configuración para Producción:
+Solo tienes que conectar tu repo de GitHub con Railway y se despliega automáticamente cada vez que haces push.
 
-La aplicación detecta automáticamente el entorno y utiliza:
+## Estructura del proyecto
 
-- **Local:** MySQL (localhost:3306)
-- **Producción:** PostgreSQL (Railway)
+El proyecto está organizado más o menos así:
 
-## 📁 Estructura del Proyecto
+- `src/main/java/` - Todo el código Java
+  - `bbdd/` - Las clases para conectar con la base de datos
+  - `controllers/` - Los controladores web (Spring MVC)
+  - `model/` - Las clases modelo (Usuario, Residente, etc.)
+  - `inicio/` - La clase principal que arranca Spring Boot
+- `src/main/resources/` - Recursos del proyecto
+  - `static/` - CSS, JavaScript e imágenes
+  - `templates/` - Las páginas HTML (Thymeleaf)
+  - `application.properties` - Configuración de la app
+- `setup_simple.sql` - Script para crear la base de datos
+- Y algunos archivos más de configuración (pom.xml, etc.)
 
-```
-projectFamiliaPlus-master/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   ├── bbdd/              # Conexión y configuración BD
-│   │   │   ├── controllers/       # Controladores Spring MVC
-│   │   │   ├── inicio/            # Clase principal Spring Boot
-│   │   │   └── model/             # Modelos de datos
-│   │   └── resources/
-│   │       ├── static/            # CSS, JS, imágenes
-│   │       ├── templates/         # Plantillas Thymeleaf
-│   │       └── application.properties
-├── database_setup_mysql.sql      # Script inicialización MySQL
-├── setup_simple.sql             # Script simplificado MySQL
-└── README.md
-```
+## Usuarios para probar
 
-## 🔑 Usuarios de Prueba
+Creamos estos usuarios de ejemplo para que puedas probar todas las funciones:
 
-| Usuario   | Contraseña | Tipo          |
+| Usuario   | Contraseña | Tipo que es   |
 | --------- | ---------- | ------------- |
 | admin     | admin123   | administrador |
 | personal1 | pass123    | personal      |
 | familiar1 | pass123    | familiar      |
 
-## ✨ Funcionalidades Principales
+## Qué puedes hacer según tu rol
 
-### Para Administradores:
+**Si eres administrador:**
 
-- 👥 Gestión completa de usuarios
-- 🏥 Administración de residentes
-- 👨‍⚕️ Control del personal
-- 📊 Reportes y estadísticas
+- Crear y gestionar todos los usuarios
+- Ver toda la información de residentes
+- Controlar el personal que trabaja
+- Generar reportes (cuando lo terminemos)
 
-### Para Personal:
+**Si eres personal/trabajador:**
 
-- 📝 Registro de cuidados
-- 📅 Programación de actividades
-- 👴 Gestión de residentes asignados
+- Registrar cuidados que das a los residentes
+- Programar actividades y eventos
+- Ver la info de tus residentes asignados
 
-### Para Familiares:
+**Si eres familiar:**
 
-- 👀 Visualización de información del residente
-- 📋 Consulta de cuidados recibidos
-- 📅 Ver actividades programadas
+- Ver la información de tu familiar residente
+- Consultar qué cuidados ha recibido
+- Ver las actividades programadas
 
-## 🔄 Historial de Cambios
+## Últimos cambios
 
-### Version 2.0 (Noviembre 2025)
+### Noviembre 2025 - Versión actual
 
-- ✅ **Migración completa a MySQL 8.0**
-- ✅ **Configuración dual Local/Producción**
-- ✅ **Optimización de conexiones BD**
-- ✅ **Scripts de inicialización automatizados**
-- ✅ **Mejora en la estructura de tablas**
-- ✅ **Datos de prueba incluidos**
-- ✅ **Documentación actualizada**
-- ✅ **Compatible con Railway deployment**
+Hicimos bastantes mejoras importantes:
 
-### Mejoras Técnicas:
+**Lo más destacado:**
 
-- 🔧 Actualizada configuración `application.properties`
-- 🔧 Mejorada clase `ConexionBBDD.java`
-- 🔧 Añadido `DatabaseInitializer.java`
-- 🔧 Scripts SQL optimizados para MySQL
-- 🔧 Variables de entorno para producción
+- Cambiamos toda la base de datos a MySQL (antes teníamos PostgreSQL)
+- Ahora funciona tanto en local como en producción sin problemas
+- Creamos scripts automáticos para inicializar la BD
+- Añadimos datos de prueba para que sea más fácil testear
+- Mejoré mucho la documentación (este README)
 
-## 🤝 Contribución
+**Cambios técnicos que hicimos:**
 
-Para contribuir al proyecto:
+- Actualizamos `application.properties` para MySQL
+- Reescribimos la clase `ConexionBBDD.java` para que sea más robusta
+- Creamos `DatabaseInitializer.java` para que se configure todo automáticamente
+- Los scripts SQL ahora están optimizados para MySQL
+- Configuramos variables de entorno para el deploy
 
-1. Fork el repositorio
-2. Crea una rama feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -am 'Añadir nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crea un Pull Request
+## Quieres contribuir?
 
-## 📞 Soporte
+Si quieres ayudar a mejorar el proyecto:
 
-Para soporte o consultas sobre el proyecto, contactar al equipo de desarrollo.
+1. Haz fork del repo
+2. Crea tu rama para la nueva función (`git checkout -b mi-nueva-funcion`)
+3. Haz commit de tus cambios (`git commit -am 'Añado esta función genial'`)
+4. Sube tus cambios (`git push origin mi-nueva-funcion`)
+5. Abre un Pull Request
+
+## Contacto
+
+Si tienes algún problema o pregunta, puedes contactarnos por aquí mismo (GitHub Issues) o buscar al equipo de desarrollo.
 
 ---
 
-**Equipo 06 - Proyecto DAW 2021/2023** ✨
+**Equipo 06 - DAW 2021/2023**  
+_"Espero que os guste cómo quedó!"_ 😊
