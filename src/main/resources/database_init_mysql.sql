@@ -8,7 +8,7 @@ USE familiaplus;
 -- Tabla de usuarios
 CREATE TABLE IF NOT EXISTS usuario (
     idUsuario VARCHAR(50) PRIMARY KEY,
-    contraseña VARCHAR(255) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     tipo VARCHAR(50) NOT NULL CHECK (tipo IN ('familiar', 'personal', 'administrador'))
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS participacion_actividades (
 
 -- Insertar datos de ejemplo
 -- Usuarios de ejemplo
-INSERT IGNORE INTO usuario (idUsuario, contraseña, nombre, apellido, tipo) VALUES 
+INSERT IGNORE INTO usuario (idUsuario, contrasena, nombre, apellido, tipo) VALUES 
 ('admin', 'admin123', 'Administrador', 'Sistema', 'administrador'),
 ('personal1', 'pass123', 'María', 'García', 'personal'),
 ('familiar1', 'pass123', 'Juan', 'Pérez', 'familiar');
