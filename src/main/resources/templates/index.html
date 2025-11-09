@@ -2,83 +2,143 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
-    <title>FAMILIA-PLUS - Gestión de Residencias</title>
-    <link rel="stylesheet" href="css/hoja1.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMILIA+</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      th:href="@{/favicon.svg}"
+      href="/favicon.svg"
+    />
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="/css/main.css" />
     <script
       src="https://kit.fontawesome.com/3b7dae609c.js"
       crossorigin="anonymous"
     ></script>
-    <script src="js/scripts.js"></script>
+    <script th:src="@{/js/scripts.js}" src="/js/scripts.js" defer></script>
   </head>
-  <body>
-    <header id="encabezado">
+  <body class="index-page">
+    <!-- Top Navigation Bar -->
+    <header class="index-nav">
+      <div class="nav-brand">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <span>FAMILIA+</span>
+      </div>
       <nav>
-        <ul id="menu">
-          <li class="elementoMenu"><a th:href="@{/index}">Inicio</a></li>
-          <li class="elementoMenu">
-            <a th:href="@{/sobreNosotros}">Sobre Nosotros</a>
-          </li>
-          <li class="elementoMenu"><a th:href="@{/menu}">Menú Mensual</a></li>
-          <li class="elementoMenu">
-            <a th:href="@{/actividades}">Actividades</a>
-          </li>
-          <li class="elementoMenu"><a th:href="@{/contacto}">Contacto</a></li>
+        <ul class="nav-links">
+          <li><a th:href="@{/index}">Inicio</a></li>
+          <li><a th:href="@{/sobreNosotros}">Sobre Nosotros</a></li>
+          <li><a th:href="@{/menu}">Menú</a></li>
+          <li><a th:href="@{/actividades}">Actividades</a></li>
+          <li><a th:href="@{/contacto}">Contacto</a></li>
         </ul>
       </nav>
-      <div class="hero-section">
-        <h1 id="tituloEncabezado">Bienvenido a FAMILIA-PLUS</h1>
-        <h2 id="subtituloEncabezado">
-          Acceso al sistema de gestión de cuidados especializados
-        </h2>
-      </div>
     </header>
-    <!-- SECCIÓN DE ACCESO -->
-    <main class="login-main">
-      <div class="login-container">
-        <h3 class="login-title">Acceso al Sistema</h3>
 
-        <form
-          th:action="@{/login}"
-          th:object="${usuario}"
-          method="post"
-          class="login-form"
-        >
-          <!-- Show error message if login failed -->
-          <div th:if="${error}" class="error-message">
-            <span th:text="${error}"></span>
+    <!-- Split Screen Layout -->
+    <main class="index-split-container">
+      <!-- Left Side: Hero -->
+      <section
+        class="hero-side"
+        th:style="'background-image: url(' + @{/media/Posible\ Hero\ Image.jpg} + ');'"
+        style="background-image: url('/media/Posible Hero Image.jpg')"
+      >
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fa-solid fa-shield-heart"></i>
           </div>
-
-          <div class="input-group">
-            <label for="idUsuario">USUARIO</label>
-            <input
-              type="text"
-              id="idUsuario"
-              th:field="*{idUsuario}"
-              placeholder="Introducir Usuario"
-              required
-            />
+          <h1 class="hero-title">Bienvenido a FAMILIA-plus</h1>
+          <p class="hero-subtitle">
+            Sistema integral de gestión para el cuidado especializado de
+            nuestros residentes
+          </p>
+          <div class="hero-features">
+            <div class="feature-item">
+              <i class="fa-solid fa-user-nurse"></i>
+              <span>Cuidado Profesional</span>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>Seguimiento Diario</span>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Gestión Eficiente</span>
+            </div>
           </div>
-
-          <div class="input-group">
-            <label for="pass">CONTRASEÑA</label>
-            <input
-              type="password"
-              id="pass"
-              th:field="*{contrasena}"
-              placeholder="Introducir Contraseña"
-              required
-            />
-          </div>
-
-          <button type="submit" class="login-btn">ENTRAR</button>
-        </form>
-
-        <div class="forgot-password">
-          <button onclick="modalForm1()" class="forgot-btn">
-            ¿OLVIDASTE TU CONTRASEÑA?
-          </button>
         </div>
-      </div>
+      </section>
+
+      <!-- Right Side: Login -->
+      <section class="login-side">
+        <div class="login-wrapper">
+          <div class="login-header">
+            <h2>Acceso al Sistema</h2>
+            <p>Ingrese sus credenciales para continuar</p>
+          </div>
+
+          <form
+            th:action="@{/login}"
+            th:object="${usuario}"
+            method="post"
+            class="modern-login-form"
+          >
+            <!-- Error message -->
+            <div th:if="${error}" class="alert-error">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span th:text="${error}"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="idUsuario">
+                <i class="fa-solid fa-user"></i>
+                Usuario
+              </label>
+              <input
+                type="text"
+                id="idUsuario"
+                th:field="*{idUsuario}"
+                placeholder="Ingrese su usuario"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="pass">
+                <i class="fa-solid fa-lock"></i>
+                Contraseña
+              </label>
+              <input
+                type="password"
+                id="pass"
+                th:field="*{contrasena}"
+                placeholder="Ingrese su contraseña"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn-primary">
+              <span>Iniciar Sesión</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <div class="login-footer">
+            <button onclick="modalForm1()" class="link-button">
+              <i class="fa-solid fa-circle-question"></i>
+              ¿Olvidaste tu contraseña?
+            </button>
+          </div>
+
+          <div class="login-info">
+            <p>
+              <i class="fa-solid fa-info-circle"></i> Sistema seguro y
+              encriptado
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- MODAL CONTRASEÑA OLVIDADA -->
@@ -94,23 +154,89 @@
       </div>
     </div>
 
+    <!-- Image Zoom Modal -->
+    <div id="imageModal" class="image-modal">
+      <span class="close-modal" onclick="closeImageModal()">&times;</span>
+      <img class="modal-content" id="modalImage" />
+    </div>
+
     <footer class="footer">
       <div class="footer-content">
+        <div class="footer-section footer-logo">
+          <div class="logo-wrapper">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h4>FAMILIA+</h4>
+          </div>
+          <p>Cuidando con amor y profesionalidad desde 2010</p>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i>
+            Villaviciosa de Odón, Madrid
+          </p>
+        </div>
         <div class="footer-section">
-          <h4>FAMILIA-PLUS</h4>
-          <p>Cuidando con amor y profesionalidad</p>
+          <h4>Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li>
+              <a th:href="@{/index}"
+                ><i class="fa-solid fa-angle-right"></i> Inicio</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/sobreNosotros}"
+                ><i class="fa-solid fa-angle-right"></i> Sobre Nosotros</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/actividades}"
+                ><i class="fa-solid fa-angle-right"></i> Actividades</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/contacto}"
+                ><i class="fa-solid fa-angle-right"></i> Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p class="footer-contact">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+34918000000">+34 918 000 000</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@familia-plus.es">info@familia-plus.es</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-clock"></i>
+            24/7 Atención Continua
+          </p>
         </div>
         <div class="footer-section">
           <h4>Síguenos</h4>
           <div class="social-icons">
-            <i class="fa-brands fa-facebook-square"></i>
-            <i class="fa-brands fa-twitter-square"></i>
-            <i class="fa-brands fa-instagram-square"></i>
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 FAMILIA-PLUS. Todos los derechos reservados.</p>
+        <p>
+          &copy; 2024 FAMILIA+. Todos los derechos reservados. |
+          <a href="#">Política de Privacidad</a> |
+          <a href="#">Términos de Uso</a>
+        </p>
       </div>
     </footer>
   </body>

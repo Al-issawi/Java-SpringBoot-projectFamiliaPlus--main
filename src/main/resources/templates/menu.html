@@ -1,36 +1,207 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-		<title>NOMBRE RESIDENCIA</title>
-	<link rel="stylesheet" href="css/hoja2.css"  />
-	<script src="https://kit.fontawesome.com/3b7dae609c.js" crossorigin="anonymous"></script>
-</head>
-<body>
-	
-	<nav>
-			<ul id="menu">
-				<li class="elementoMenu"><a th:href="@{/index}"> Home </a></li>
-				<li class="elementoMenu"><a th:href="@{/sobreNosotros}">
-						Sobre Nosotros </a></li>
-				<li class="elementoMenu"><a th:href="@{/menu}"> Menú mensual
-				</a></li>
-				<li class="elementoMenu"><a th:href="@{/actividades}">
-						Actividades </a></li>
-				<li class="elementoMenu"><a th:href="@{/contacto}"> Contacto
-				</a></li>
-			</ul>
-		</nav>
-		<h1 id="nombreVentana">Menú mensual</h1>
-<div class="contenedorMenu">
-                <img class="imagen" alt="menu" src="media/menu.jpg">
-</div>
-<footer id="pie">
-		<div id="contenedorIconos">
-			<i class="fa-brands fa-facebook-square"></i>
-            <i class="fa-brands fa-twitter-square"></i>
-            <i class="fa-brands fa-instagram-square"></i>
-		</div>
-	</footer>
-</body>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMILIA+</title>
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      th:href="@{/favicon.svg}"
+      href="/favicon.svg"
+    />
+
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="/css/main.css" />
+    <script
+      src="https://kit.fontawesome.com/3b7dae609c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="page menu-page">
+    <header id="encabezado">
+      <nav>
+        <ul id="menu">
+          <li class="elementoMenu"><a th:href="@{/index}">Inicio</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/sobreNosotros}">Sobre Nosotros</a>
+          </li>
+          <li class="elementoMenu"><a th:href="@{/menu}">Menú Mensual</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/actividades}">Actividades</a>
+          </li>
+          <li class="elementoMenu"><a th:href="@{/contacto}">Contacto</a></li>
+        </ul>
+      </nav>
+      <h1 id="nombreVentana">Menú Mensual</h1>
+    </header>
+    <main>
+      <!-- Hero Section -->
+      <section class="page-hero menu-hero">
+        <div class="hero-overlay"></div>
+        <div class="page-hero-content">
+          <i class="fa-solid fa-utensils hero-icon"></i>
+          <h2>Nutrición Equilibrada y Deliciosa</h2>
+          <p>Menús elaborados por nutricionistas especializados en geriatría</p>
+        </div>
+      </section>
+
+      <!-- Menu Info Cards -->
+      <div class="menu-info-section">
+        <div class="info-card">
+          <i class="fa-solid fa-leaf"></i>
+          <h3>Ingredientes Frescos</h3>
+          <p>Productos de temporada y de proximidad</p>
+        </div>
+        <div class="info-card">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <h3>Dietas Personalizadas</h3>
+          <p>Adaptadas a necesidades médicas y preferencias</p>
+        </div>
+        <div class="info-card">
+          <i class="fa-solid fa-award"></i>
+          <h3>Cocina Casera</h3>
+          <p>Elaboración tradicional con sabor a hogar</p>
+        </div>
+      </div>
+
+      <!-- Menu Image -->
+      <div class="contenedorMenu">
+        <div class="menu-card">
+          <h2 class="menu-title">Menú del Mes</h2>
+          <p class="menu-subtitle">
+            Consulte nuestro menú mensual con todas las opciones disponibles
+          </p>
+          <img
+            class="imagen"
+            alt="Menú mensual de FAMILIA-PLUS"
+            th:src="@{/media/menu.jpg}"
+            src="/media/menu.jpg"
+            onclick="openImageModal(this.src)"
+          />
+          <p class="menu-note">
+            <i class="fa-solid fa-info-circle"></i>
+            Haga clic en la imagen para ampliar
+          </p>
+        </div>
+      </div>
+
+      <!-- Additional Info -->
+      <section class="menu-features">
+        <h2 class="section-title">
+          Características de Nuestro Servicio de Comidas
+        </h2>
+        <div class="features-list">
+          <div class="feature-item-menu">
+            <i class="fa-solid fa-check-circle"></i>
+            <div>
+              <h4>Variedad de Opciones</h4>
+              <p>Diferentes platos para elegir cada día</p>
+            </div>
+          </div>
+          <div class="feature-item-menu">
+            <i class="fa-solid fa-check-circle"></i>
+            <div>
+              <h4>Control Nutricional</h4>
+              <p>Supervisión por nutricionistas certificados</p>
+            </div>
+          </div>
+          <div class="feature-item-menu">
+            <i class="fa-solid fa-check-circle"></i>
+            <div>
+              <h4>Alergias e Intolerancias</h4>
+              <p>Menús especiales para cualquier restricción alimentaria</p>
+            </div>
+          </div>
+          <div class="feature-item-menu">
+            <i class="fa-solid fa-check-circle"></i>
+            <div>
+              <h4>Horarios Flexibles</h4>
+              <p>Adaptados a las necesidades de cada residente</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section footer-logo">
+          <div class="logo-wrapper">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h4>FAMILIA-PLUS</h4>
+          </div>
+          <p>Cuidando con amor y profesionalidad desde 2010</p>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i>
+            Villaviciosa de Odón, Madrid
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li>
+              <a th:href="@{/index}"
+                ><i class="fa-solid fa-angle-right"></i> Inicio</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/sobreNosotros}"
+                ><i class="fa-solid fa-angle-right"></i> Sobre Nosotros</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/actividades}"
+                ><i class="fa-solid fa-angle-right"></i> Actividades</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/contacto}"
+                ><i class="fa-solid fa-angle-right"></i> Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p class="footer-contact">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+34918000000">+34 918 000 000</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@familia-plus.es">info@familia-plus.es</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-clock"></i>
+            24/7 Atención Continua
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2024 FAMILIA-PLUS. Todos los derechos reservados. |
+          <a href="#">Política de Privacidad</a> |
+          <a href="#">Términos de Uso</a>
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>

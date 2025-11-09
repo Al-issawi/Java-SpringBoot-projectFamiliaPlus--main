@@ -1,57 +1,317 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-		<title>NOMBRE RESIDENCIA</title>
-	<link rel="stylesheet" href="css/hoja2.css"  />
-	<script src="https://kit.fontawesome.com/3b7dae609c.js" crossorigin="anonymous"></script>
-</meta>
-</meta>
-</head>
-<body>
-		<nav>
-			<ul id="menu">
-				<li class="elementoMenu"><a th:href="@{/index}"> Home </a></li>
-				<li class="elementoMenu"><a th:href="@{/sobreNosotros}">
-						Sobre Nosotros </a></li>
-				<li class="elementoMenu"><a th:href="@{/menu}"> Menú mensual
-				</a></li>
-				<li class="elementoMenu"><a th:href="@{/actividades}">
-						Actividades </a></li>
-				<li class="elementoMenu"><a th:href="@{/contacto}"> Contacto
-				</a></li>
-			</ul>
-		</nav>
-		<h1 id="nombreVentana">Actividades</h1>
-<div class="contenedorActividades">
-                <div class="actividad">
-                    <div class="foto">
-                        <img src="media/Aquagym.jpeg" alt="aquagym" >
-                    </div>
-                    <p class="nombre">Aquagym</p>
-                    <p class="definicion">Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-                <div class="actividad">
-                    <div class="foto">
-                        <img src="media/Estiramientos.jpg"alt="estiramientos">
-                    </div>
-                    <p class="nombre">Estiramientos</p>
-                    <p class="definicion">Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-                <div class="actividad">
-                    <div class="foto">
-                        <img src="media/coro.jpg"alt="Coro">
-                    </div>
-                    <p class="nombre">Coro</p>
-                    <p class="definicion">Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMILIA+</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      th:href="@{/favicon.svg}"
+      href="/favicon.svg"
+    />
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="/css/main.css" />
+    <script
+      src="https://kit.fontawesome.com/3b7dae609c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="page actividades-page">
+    <header id="encabezado">
+      <nav>
+        <ul id="menu">
+          <li class="elementoMenu"><a th:href="@{/index}">Inicio</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/sobreNosotros}">Sobre Nosotros</a>
+          </li>
+          <li class="elementoMenu"><a th:href="@{/menu}">Menú Mensual</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/actividades}">Actividades</a>
+          </li>
+          <li class="elementoMenu"><a th:href="@{/contacto}">Contacto</a></li>
+        </ul>
+      </nav>
+      <h1 id="nombreVentana">Nuestras Actividades</h1>
+    </header>
+    <main>
+      <!-- Hero Section for Activities -->
+      <section class="page-hero activities-hero">
+        <div class="hero-overlay"></div>
+        <div class="page-hero-content">
+          <i class="fa-solid fa-calendar-days hero-icon"></i>
+          <h2>Actividades Terapéuticas y Recreativas</h2>
+          <p>
+            Diseñadas para promover el bienestar físico, mental y social de
+            nuestros residentes
+          </p>
+        </div>
+      </section>
+
+      <!-- Activities Grid -->
+      <div class="contenedorActividades">
+        <div class="actividad">
+          <div class="foto">
+            <img
+              th:src="@{/media/Aquagym.jpeg}"
+              src="/media/Aquagym.jpeg"
+              alt="Aquagym - Ejercicio acuático"
+            />
+            <div class="activity-badge">
+              <i class="fa-solid fa-water"></i>
             </div>
-            <footer id="pie">
-		<div id="contenedorIconos">
-			<i class="fa-brands fa-facebook-square"></i>
-            <i class="fa-brands fa-twitter-square"></i>
-            <i class="fa-brands fa-instagram-square"></i>
-		</div>
-	</footer>
-</body>
+          </div>
+          <div class="activity-content">
+            <h3 class="nombre">Aquagym</h3>
+            <p class="definicion">
+              Actividad física en el agua que mejora la movilidad, fortalece los
+              músculos y proporciona bienestar general. Ideal para todas las
+              edades y niveles de condición física.
+            </p>
+            <div class="activity-meta">
+              <span><i class="fa-solid fa-clock"></i> 45 min</span>
+              <span><i class="fa-solid fa-users"></i> Grupal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="foto">
+            <img
+              th:src="@{/media/Estiramientos.jpg}"
+              src="/media/Estiramientos.jpg"
+              alt="Estiramientos y ejercicios"
+            />
+            <div class="activity-badge">
+              <i class="fa-solid fa-person-walking"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="nombre">Estiramientos y Movilidad</h3>
+            <p class="definicion">
+              Sesiones guiadas de estiramientos y ejercicios suaves que ayudan a
+              mantener la flexibilidad, mejorar la circulación y reducir dolores
+              musculares.
+            </p>
+            <div class="activity-meta">
+              <span><i class="fa-solid fa-clock"></i> 30 min</span>
+              <span><i class="fa-solid fa-users"></i> Individual/Grupal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="foto">
+            <img
+              th:src="@{/media/coro.jpg}"
+              src="/media/coro.jpg"
+              alt="Coro - Actividad musical"
+            />
+            <div class="activity-badge">
+              <i class="fa-solid fa-music"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="nombre">Coro y Musicoterapia</h3>
+            <p class="definicion">
+              Actividad musical que estimula la memoria, fomenta la
+              socialización y proporciona momentos de alegría y conexión
+              emocional.
+            </p>
+            <div class="activity-meta">
+              <span><i class="fa-solid fa-clock"></i> 60 min</span>
+              <span><i class="fa-solid fa-users"></i> Grupal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="foto">
+            <img
+              th:src="@{/media/Petanca hd.jpg}"
+              src="/media/Petanca hd.jpg"
+              alt="Petanca - Juego al aire libre"
+            />
+            <div class="activity-badge">
+              <i class="fa-solid fa-baseball"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="nombre">Petanca</h3>
+            <p class="definicion">
+              Juego tradicional al aire libre que promueve la concentración, la
+              coordinación y el compañerismo en un ambiente relajado y
+              divertido.
+            </p>
+            <div class="activity-meta">
+              <span><i class="fa-solid fa-clock"></i> 60 min</span>
+              <span><i class="fa-solid fa-users"></i> Grupal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="foto">
+            <img
+              th:src="@{/media/fisio.jpg}"
+              src="/media/fisio.jpg"
+              alt="Fisioterapia"
+            />
+            <div class="activity-badge">
+              <i class="fa-solid fa-hand-holding-medical"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="nombre">Fisioterapia</h3>
+            <p class="definicion">
+              Sesiones personalizadas de fisioterapia para mantener y mejorar la
+              movilidad, prevenir lesiones y rehabilitar funciones motoras.
+            </p>
+            <div class="activity-meta">
+              <span><i class="fa-solid fa-clock"></i> 40 min</span>
+              <span><i class="fa-solid fa-user"></i> Individual</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="foto">
+            <img
+              th:src="@{/media/verano.jpg}"
+              src="/media/verano.jpg"
+              alt="Actividades de verano"
+            />
+            <div class="activity-badge">
+              <i class="fa-solid fa-sun"></i>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="nombre">Programa de Verano</h3>
+            <p class="definicion">
+              Actividades especiales al aire libre durante la temporada estival,
+              incluyendo excursiones, juegos y eventos sociales en el jardín.
+            </p>
+            <div class="activity-meta">
+              <span><i class="fa-solid fa-clock"></i> Variable</span>
+              <span><i class="fa-solid fa-users"></i> Grupal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefits Section -->
+      <section class="benefits-section">
+        <h2 class="section-title">Beneficios de Nuestras Actividades</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <h3>Salud Física</h3>
+            <p>Mejora la movilidad, fuerza muscular y salud cardiovascular</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3>Estimulación Cognitiva</h3>
+            <p>Mantiene activa la mente y estimula la memoria</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fa-solid fa-people-group"></i>
+            </div>
+            <h3>Socialización</h3>
+            <p>Fomenta relaciones sociales y reduce el aislamiento</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fa-solid fa-face-smile"></i>
+            </div>
+            <h3>Bienestar Emocional</h3>
+            <p>Aumenta la autoestima y proporciona alegría</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section footer-logo">
+          <div class="logo-wrapper">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h4>FAMILIA-PLUS</h4>
+          </div>
+          <p>Cuidando con amor y profesionalidad desde 2010</p>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i>
+            Villaviciosa de Odón, Madrid
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li>
+              <a th:href="@{/index}"
+                ><i class="fa-solid fa-angle-right"></i> Inicio</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/sobreNosotros}"
+                ><i class="fa-solid fa-angle-right"></i> Sobre Nosotros</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/actividades}"
+                ><i class="fa-solid fa-angle-right"></i> Actividades</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/contacto}"
+                ><i class="fa-solid fa-angle-right"></i> Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p class="footer-contact">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+34918000000">+34 918 000 000</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@familia-plus.es">info@familia-plus.es</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-clock"></i>
+            24/7 Atención Continua
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2024 FAMILIA-PLUS. Todos los derechos reservados. |
+          <a href="#">Política de Privacidad</a> |
+          <a href="#">Términos de Uso</a>
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>

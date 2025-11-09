@@ -1,0 +1,20 @@
+# Maven build output
+target/
+
+# Eclipse/IDEA/VS Code
+.classpath
+.project
+.settings/
+*.iml
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node/yarn (if ever used in static tooling)
+node_modules/

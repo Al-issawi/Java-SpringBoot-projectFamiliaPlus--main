@@ -1,47 +1,244 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>NOMBRE RESIDENCIA</title>
-	<link rel="stylesheet" href="css/hoja2.css"  />
-	<script src="https://kit.fontawesome.com/3b7dae609c.js" crossorigin="anonymous"></script>
-</head>
-<body>
-<nav>
-			<ul id="menu">
-				<li class="elementoMenu"><a th:href="@{/index}"> Home </a></li>
-				<li class="elementoMenu"><a th:href="@{/sobreNosotros}">
-						Sobre Nosotros </a></li>
-				<li class="elementoMenu"><a th:href="@{/menu}"> Menú mensual
-				</a></li>
-				<li class="elementoMenu"><a th:href="@{/actividades}">
-						Actividades </a></li>
-				<li class="elementoMenu"><a th:href="@{/contacto}"> Contacto
-				</a></li>
-			</ul>
-		</nav>
-		<h1 id="nombreVentana">Sobre nosotros</h1>
-<div id="contenedorColumnas">
-                <div class="columnas">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-                <div class="columnas">
-                   <iframe src="https://www.youtube.com/embed/Mj6M22zuLL0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                
-                </div>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMILIA+</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      th:href="@{/favicon.svg}"
+      href="/favicon.svg"
+    />
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="/css/main.css" />
+    <script
+      src="https://kit.fontawesome.com/3b7dae609c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="page sobre-page">
+    <header id="encabezado">
+      <nav>
+        <ul id="menu">
+          <li class="elementoMenu"><a th:href="@{/index}">Inicio</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/sobreNosotros}">Sobre Nosotros</a>
+          </li>
+          <li class="elementoMenu"><a th:href="@{/menu}">Menú Mensual</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/actividades}">Actividades</a>
+          </li>
+          <li class="elementoMenu"><a th:href="@{/contacto}">Contacto</a></li>
+        </ul>
+      </nav>
+      <h1 id="nombreVentana">Sobre FAMILIA-PLUS</h1>
+    </header>
+    <main class="container">
+      <!-- Hero Section -->
+      <section
+        class="page-hero sobre-hero"
+        th:style="'background-image: url(' + @{/media/Hero image alternativo.jpg} + ');'"
+        style="background-image: url('/media/Hero image alternativo.jpg')"
+      >
+        <div class="hero-overlay"></div>
+        <div class="page-hero-content">
+          <i class="fa-solid fa-heart hero-icon"></i>
+          <h2>Comprometidos con el Cuidado de Excelencia</h2>
+          <p>Más de una década brindando amor, respeto y profesionalidad</p>
+        </div>
+      </section>
+
+      <!-- Mission & Values -->
+      <div class="contenedorColumnas sobre-content">
+        <div class="columnas">
+          <div class="icon-header">
+            <i class="fa-solid fa-bullseye"></i>
+            <h3>Nuestra Misión</h3>
+          </div>
+          <p>
+            En FAMILIA-PLUS nos dedicamos a brindar cuidados especializados con
+            amor y profesionalidad. Nuestro equipo altamente capacitado se
+            compromete a ofrecer la mejor calidad de vida para nuestros
+            residentes, creando un ambiente cálido y seguro donde cada persona
+            se sienta como en casa.
+          </p>
+
+          <div class="icon-header mt-4">
+            <i class="fa-solid fa-gem"></i>
+            <h3>Nuestros Valores</h3>
+          </div>
+          <p>
+            Respeto, dignidad, profesionalidad y cariño son los pilares
+            fundamentales que guían nuestro trabajo diario. Creemos en la
+            importancia de mantener la independencia y autonomía de cada
+            residente, adaptándonos a sus necesidades específicas.
+          </p>
+
+          <div class="icon-header mt-4">
+            <i class="fa-solid fa-shield-heart"></i>
+            <h3>Nuestro Compromiso</h3>
+          </div>
+          <p>
+            Garantizamos atención personalizada las 24 horas del día, 7 días a
+            la semana, con personal médico y de enfermería cualificado.
+            Trabajamos en estrecha colaboración con las familias para asegurar
+            el bienestar integral de cada residente.
+          </p>
+        </div>
+
+        <div class="columnas video-column">
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/Mj6M22zuLL0"
+              title="Presentación FAMILIA-PLUS"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <i class="fa-solid fa-users"></i>
+              <div class="stat-number">150+</div>
+              <div class="stat-label">Residentes</div>
             </div>
+            <div class="stat-card">
+              <i class="fa-solid fa-user-nurse"></i>
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Profesionales</div>
+            </div>
+            <div class="stat-card">
+              <i class="fa-solid fa-calendar"></i>
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Años de Experiencia</div>
+            </div>
+            <div class="stat-card">
+              <i class="fa-solid fa-star"></i>
+              <div class="stat-number">98%</div>
+              <div class="stat-label">Satisfacción</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <!-- Services Section -->
+      <section class="services-section">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <i class="fa-solid fa-stethoscope"></i>
+            <h3>Atención Médica</h3>
+            <p>Supervisión médica continua y atención especializada</p>
+          </div>
+          <div class="service-card">
+            <i class="fa-solid fa-utensils"></i>
+            <h3>Nutrición</h3>
+            <p>Menús equilibrados adaptados a necesidades individuales</p>
+          </div>
+          <div class="service-card">
+            <i class="fa-solid fa-dumbbell"></i>
+            <h3>Fisioterapia</h3>
+            <p>Programas de rehabilitación y mantenimiento físico</p>
+          </div>
+          <div class="service-card">
+            <i class="fa-solid fa-masks-theater"></i>
+            <h3>Actividades</h3>
+            <p>Talleres recreativos y terapéuticos diarios</p>
+          </div>
+          <div class="service-card">
+            <i class="fa-solid fa-pills"></i>
+            <h3>Farmacia</h3>
+            <p>Control y administración de medicamentos</p>
+          </div>
+          <div class="service-card">
+            <i class="fa-solid fa-spa"></i>
+            <h3>Bienestar</h3>
+            <p>Servicios de peluquería, podología y cuidado personal</p>
+          </div>
+        </div>
+      </section>
+    </main>
 
-	</div>
-<footer id="pie">
-		<div id="contenedorIconos">
-			<i class="fa-brands fa-facebook-square"></i>
-            <i class="fa-brands fa-twitter-square"></i>
-            <i class="fa-brands fa-instagram-square"></i>
-		</div>
-	</footer>
-	</body>
-	</html>
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section footer-logo">
+          <div class="logo-wrapper">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h4>FAMILIA-PLUS</h4>
+          </div>
+          <p>Cuidando con amor y profesionalidad desde 2010</p>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i>
+            Villaviciosa de Odón, Madrid
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li>
+              <a th:href="@{/index}"
+                ><i class="fa-solid fa-angle-right"></i> Inicio</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/sobreNosotros}"
+                ><i class="fa-solid fa-angle-right"></i> Sobre Nosotros</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/actividades}"
+                ><i class="fa-solid fa-angle-right"></i> Actividades</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/contacto}"
+                ><i class="fa-solid fa-angle-right"></i> Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p class="footer-contact">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+34918000000">+34 918 000 000</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@familia-plus.es">info@familia-plus.es</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-clock"></i>
+            24/7 Atención Continua
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2024 FAMILIA-PLUS. Todos los derechos reservados. |
+          <a href="#">Política de Privacidad</a> |
+          <a href="#">Términos de Uso</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

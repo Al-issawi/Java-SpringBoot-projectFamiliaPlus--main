@@ -1,70 +1,233 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8">
-		<title>NOMBRE RESIDENCIA</title>
-	<link rel="stylesheet" href="css/hoja2.css"  />
-</head>
-<body>
-	<header id="encabezado">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMILIA+</title>
 
- 		<nav>
-			<ul id="menu">
-				<li class="elementoMenu"><a th:href="@{/index}"> Home </a></li>
-				<li class="elementoMenu"><a th:href="@{/sobreNosotros}">
-						Sobre Nosotros </a></li>
-				<li class="elementoMenu"><a th:href="@{/menu}"> Menú mensual
-				</a></li>
-				<li class="elementoMenu"><a th:href="@{/actividades}">
-						Actividades </a></li>
-				<li class="elementoMenu"><a th:href="@{/contacto}"> Contacto
-				</a></li>
-			</ul>
-		</nav>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      th:href="@{/favicon.svg}"
+      href="/favicon.svg"
+    />
 
- 		<h1 id="nombreVentana">Bienvenido</h1>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="/css/main.css" />
+    <script
+      src="https://kit.fontawesome.com/3b7dae609c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="page familiar-page">
+    <header id="encabezado">
+      <nav>
+        <ul id="menu">
+          <li class="elementoMenu"><a th:href="@{/index}">Inicio</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/sobreNosotros}">Sobre Nosotros</a>
+          </li>
+          <li class="elementoMenu"><a th:href="@{/menu}">Menú Mensual</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/actividades}">Actividades</a>
+          </li>
+          <li class="elementoMenu"><a th:href="@{/contacto}">Contacto</a></li>
+        </ul>
+      </nav>
+      <h1 id="nombreVentana">
+        <i class="fa-solid fa-house-medical"></i>
+        Panel Familiar
+      </h1>
+    </header>
+    <main>
+      <!-- Dashboard Header -->
+      <section class="dashboard-header">
+        <div class="welcome-card">
+          <div class="welcome-icon">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div class="welcome-text">
+            <h2>Información de su Familiar</h2>
+            <p>
+              Manténgase informado sobre el cuidado y bienestar de su ser
+              querido
+            </p>
+          </div>
+        </div>
+      </section>
 
-	</header>
-	
-	
-	<h2 class=nombreTabla>Datos de su familiar</h2>
-	<div class="contenedorTabla1">
-  			 		<table border="1" width="1000">
-    <thead>
-    <tr>
-        <td>Nombre </td>
-        <td>Apellido </td>
-         <td>Edad </td>
-        <td>Número de habitación</td>
-            </tr>
-    </thead>
-<tr >
-    <td th:text="${residente.nombre}"></td>
-    <td th:text="${residente.apellido}"></td>
-    <td th:text="${residente.edad}"></td>
-    <td th:text="${residente.n_hab}"></td>
-</tr>
+      <!-- Resident Info Card -->
+      <div class="resident-info-card">
+        <div class="card-header">
+          <i class="fa-solid fa-user-circle"></i>
+          <h2>Datos del Residente</h2>
+        </div>
+        <div class="contenedorTabla1">
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <td><i class="fa-solid fa-signature"></i> Nombre</td>
+                <td><i class="fa-solid fa-id-badge"></i> Apellido</td>
+                <td><i class="fa-solid fa-cake-candles"></i> Edad</td>
+                <td><i class="fa-solid fa-door-open"></i> Habitación</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td th:text="${residente.nombre}"></td>
+                <td th:text="${residente.apellido}"></td>
+                <td th:text="${residente.edad}"></td>
+                <td th:text="${residente.n_hab}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-</table>
-	 </div>
+      <!-- Care Records -->
+      <div class="care-records-section">
+        <div class="card-header">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <h2>Registro de Cuidados y Atenciones</h2>
+        </div>
+        <div class="contenedorTabla2">
+          <table class="modern-table care-table">
+            <thead>
+              <tr>
+                <td><i class="fa-solid fa-calendar-day"></i> Fecha</td>
+                <td>
+                  <i class="fa-solid fa-file-medical-alt"></i> Descripción del
+                  Cuidado
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="cuidado: ${residente.cuidados}">
+                <td th:text="${cuidado.fecha}" class="date-cell"></td>
+                <td
+                  th:text="${cuidado.descripcion}"
+                  class="description-cell"
+                ></td>
+              </tr>
+              <tr th:if="${#lists.isEmpty(residente.cuidados)}">
+                <td colspan="2" class="no-records">
+                  <i class="fa-solid fa-info-circle"></i>
+                  No hay registros de cuidados disponibles en este momento
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-	 
-	 
-	<h2 class=nombreTabla>Cuidados</h2>
-	<div class="contenedorTabla2">
-	<table border="1" width="1000">
-    <thead>
-    <tr>
-        <td>Fecha </td>
-        <td>Descripción </td>
-       
-            </tr>
-    </thead>
-<tr th:each="cuidado: ${residente.cuidados}">
-    <td th:text="${cuidado.fecha}"></td>
-    <td th:text="${cuidado.descripcion}"></td>
-   </tr>
-</table>
-	 </div>
-</body>
+      <!-- Quick Stats -->
+      <section class="family-stats">
+        <div class="stat-box">
+          <i class="fa-solid fa-notes-medical"></i>
+          <div class="stat-content">
+            <div
+              class="stat-value"
+              th:text="${#lists.size(residente.cuidados)}"
+            >
+              0
+            </div>
+            <div class="stat-label">Registros Totales</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <i class="fa-solid fa-user-nurse"></i>
+          <div class="stat-content">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Atención Continua</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <i class="fa-solid fa-shield-heart"></i>
+          <div class="stat-content">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Compromiso</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section footer-logo">
+          <div class="logo-wrapper">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h4>FAMILIA-PLUS</h4>
+          </div>
+          <p>Cuidando con amor y profesionalidad desde 2010</p>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i>
+            Villaviciosa de Odón, Madrid
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li>
+              <a th:href="@{/index}"
+                ><i class="fa-solid fa-angle-right"></i> Inicio</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/sobreNosotros}"
+                ><i class="fa-solid fa-angle-right"></i> Sobre Nosotros</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/actividades}"
+                ><i class="fa-solid fa-angle-right"></i> Actividades</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/contacto}"
+                ><i class="fa-solid fa-angle-right"></i> Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p class="footer-contact">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+34918000000">+34 918 000 000</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@familia-plus.es">info@familia-plus.es</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-clock"></i>
+            24/7 Atención Continua
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2024 FAMILIA-PLUS. Todos los derechos reservados. |
+          <a href="#">Política de Privacidad</a> |
+          <a href="#">Términos de Uso</a>
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>
