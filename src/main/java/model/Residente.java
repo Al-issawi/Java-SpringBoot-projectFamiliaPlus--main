@@ -182,7 +182,7 @@ public class Residente {
 	}
 
 	public void setN_resi(String n_resi) {
-		this.n_resi = n_resi;
+		Residente.n_resi = n_resi;
 	}
 
 	public static List<Cuidado> getCuidados() {
