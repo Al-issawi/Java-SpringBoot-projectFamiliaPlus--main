@@ -52,12 +52,9 @@ public class Usuario {
 			return null;
 		} finally {
 			try {
-				if (rs != null)
-					rs.close();
-				if (stm != null)
-					stm.close();
-				if (con != null)
-					con.close();
+				if (rs != null) rs.close();
+				if (stm != null) stm.close();
+				if (con != null) con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
