@@ -1,5 +1,121 @@
 # FAMILIA-PLUS - Sistema de Gestión para Residencias
 
+Aplicación monolítica Spring Boot 2.6.7 con Thymeleaf para gestionar residentes, personal, familiares, actividades y cuidados. Diseño modernizado (hero en portada, tarjetas, pie unificado) y favicon sanitario (heart-pulse) en azul/teal.
+
+## Flujo de ramas
+
+- Desarrollo local: rama `master` (localhost)
+- Despliegue: rama `main` (Railway)
+- Procedimiento:
+  1) Trabaja/commitea en `master`
+  2) `git checkout main && git merge master`
+  3) Asegura privacidad (sin credenciales en texto plano)
+  4) `git push origin main` (despliegue se dispara en Railway)
+
+## Configuración de entorno (privacidad)
+
+La app usa MySQL mediante variables de entorno con valores por defecto solo para local:
+
+- `MYSQL_URL` (p.ej. jdbc:mysql://HOST:PUERTO/familiaplus?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true)
+- `MYSQL_USER`
+- `MYSQL_PASSWORD`
+- `PORT` (lo inyecta Railway automáticamente)
+
+Archivo: `src/main/resources/application.properties` (sin secretos en la rama `main`). Existe `application-production.properties` para PostgreSQL, pero el conector actual del proyecto usa MySQL; recomendamos MySQL también en producción para evitar refactor.
+
+## Ejecutar en local
+
+Requisitos: Java 11+, Maven 3.6+, MySQL 8.0
+
+1) Clonar y entrar en el proyecto
+```bash
+git clone https://github.com/Al-issawi/projectFamiliaPlus-main.git
+cd projectFamiliaPlus-master
+```
+
+2) Crear base de datos
+```sql
+CREATE DATABASE familiaplus CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+3) Variables de entorno opcionales (si no usas los valores por defecto)
+```bash
+# Windows PowerShell
+$env:MYSQL_URL="jdbc:mysql://localhost:3306/familiaplus?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
+$env:MYSQL_USER="root"
+$env:MYSQL_PASSWORD="<tu_password>"
+```
+
+4) Arrancar
+```bash
+mvn spring-boot:run
+```
+
+App en http://localhost:9000
+
+## Despliegue en Railway (desde cero)
+
+Este repo incluye `railway.toml`:
+- build: `mvn clean package -DskipTests`
+- start: `java -Dserver.port=$PORT -jar target/*.jar`
+
+Pasos:
+1. En Railway, crea un nuevo proyecto y conecta el repo de GitHub.
+2. En el servicio web, define variables de entorno:
+   - `MYSQL_URL` → URL JDBC de tu MySQL gestionado por Railway u otro proveedor
+   - `MYSQL_USER`
+   - `MYSQL_PASSWORD`
+3. Asegúrate de que el servicio expone el puerto `$PORT` (Railway lo inyecta). No definas un puerto fijo.
+4. Branch de deploy: `main`. Cada push a `main` redepliega.
+5. Pulsa “Deploy” o “Redeploy” y revisa logs.
+
+Comprobación en logs: debería mostrarse algo como
+- `Conexión MySQL OK - Producción`
+- mensajes de inicialización de base de datos (DatabaseInitializer) si los scripts se ejecutan.
+
+Si prefieres PostgreSQL en Railway, hace falta un pequeño ajuste en `ConexionBBDD` para usar `DATABASE_URL` y el driver `org.postgresql.Driver`. Podemos realizarlo si lo solicitas.
+
+## Estructura del proyecto
+
+- `src/main/java/`
+  - `bbdd/` JDBC helper e inicialización
+  - `controllers/` Controladores Spring MVC
+  - `model/` Modelos con acceso JDBC
+  - `inicio/` Clase principal Spring Boot
+- `src/main/resources/`
+  - `templates/` Vistas Thymeleaf (index, actividades, sobreNosotros, menú, personal, familiar, contacto)
+  - `static/` CSS/JS/media (incluye `favicon.svg` y `css/main.css`)
+  - `application.properties` (usa env vars)
+- `railway.toml` Configuración de deploy
+- `pom.xml` Dependencias y plugin Spring Boot
+
+## Usuarios de prueba (ejemplo)
+
+| Usuario   | Contraseña | Rol           |
+|-----------|------------|---------------|
+| admin     | admin123   | administrador |
+| personal1 | pass123    | personal      |
+| familiar1 | pass123    | familiar      |
+
+## Cambios recientes (Nov 2025)
+
+- Unificación de títulos `<title>` y favicon sanitario (azul/teal)
+- Rediseño de páginas y pie unificado
+- Consolidación de estilos en `css/main.css`
+- Privacidad: uso de variables de entorno para credenciales
+- Flujo de ramas: `master` (local) → `main` (deploy)
+
+## Contribuir
+
+1. Fork
+2. Rama de feature: `git checkout -b feature/mi-cambio`
+3. Commits y push
+4. Pull Request
+
+## Contacto
+
+GitHub Issues o equipo de desarrollo.# FAMILIA-PLUS - Sistema de Gestión para Residencias
+
 Hey! Este es nuestro proyecto final para el curso de DAW. Desarrollamos un sistema web para gestionar residencias de ancianos.
 
 ## ¿Qué hace la aplicación?
