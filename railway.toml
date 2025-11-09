@@ -12,7 +12,6 @@ command = "mvn -q clean package -DskipTests"
 startCommand = "java -Dserver.port=$PORT -jar target/familia_plus-0.0.1-SNAPSHOT.jar"
 
 [env]
-SPRING_PROFILES_ACTIVE = "production"
 # MYSQL_URL / MYSQL_USER / MYSQL_PASSWORD must be set in the Railway UI
 
 # (Optional) If you later change artifact name/group/version adjust startCommand accordingly.

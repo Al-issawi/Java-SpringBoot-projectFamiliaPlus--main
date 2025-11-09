@@ -1,7 +1,6 @@
 package bbdd;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -22,7 +21,10 @@ public class DatabaseInitializer {
 
     @PostConstruct
     public void initDatabase() {
-        String environment = System.getenv("DATABASE_URL") != null ? "Producción (PostgreSQL)" : "Local (MySQL)";
+        // Detect environment based on presence of MySQL env vars instead of
+        // DATABASE_URL
+        boolean mysqlEnv = System.getenv("MYSQL_URL") != null;
+        String environment = mysqlEnv ? "Producción (MySQL)" : "Local (MySQL)";
         System.out.println("Iniciando configuración de base de datos - " + environment);
 
         Connection connection = ConexionBBDD.conectarBBDD();
@@ -46,24 +48,27 @@ public class DatabaseInitializer {
     }
 
     private void executeSqlScript(Connection connection) throws Exception {
-        // Determinar qué script usar basado en el entorno
-        String scriptName = System.getenv("DATABASE_URL") != null ? "setup_postgresql.sql" : "setup_simple.sql";
+        // Prefer MySQL init script; fall back to legacy simple script
+        String scriptName = "database_init_mysql.sql";
+
+        // Intentar cargar scriptName; si no existe, intentar setup_simple.sql
 
         // Leer el archivo SQL desde el classpath
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(scriptName);
 
         if (inputStream == null) {
-            System.out.println(
-                    "Archivo database_init.sql no encontrado en resources, intentando desde directorio raíz...");
-            // Si no está en resources, intentar desde el directorio raíz del proyecto
-            try (BufferedReader reader = new BufferedReader(new FileReader("database_init.sql"))) {
-                executeSqlFromReader(connection, reader);
-            }
-        } else {
-            try (BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-                executeSqlFromReader(connection, reader);
-            }
+            // Intentar script alternativo
+            inputStream = getClass().getClassLoader().getResourceAsStream("setup_simple.sql");
+        }
+
+        if (inputStream == null) {
+            System.out.println("[DatabaseInitializer] No se encontró ningún script de inicialización (omitido).");
+            return; // Silenciar ausencia de script
+        }
+
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            executeSqlFromReader(connection, reader);
         }
     }
 
