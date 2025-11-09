@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import bbdd.ConexionBBDD;
-/**Clase residente
+
+/**
+ * Clase residente
  * 
  */
 public class Residente {
@@ -23,6 +24,7 @@ public class Residente {
 	/**
 	 * Recupera la información del residente pasando como parámetro el código de
 	 * usuario de tipo familiar.
+	 * 
 	 * @author Germán Carrasco
 	 * @param idUsuario
 	 * @return
@@ -30,17 +32,17 @@ public class Residente {
 	public static String buscarResi(String idUsuario) {
 
 		Connection con = ConexionBBDD.conectarBBDD();
-
+		PreparedStatement stm = null;
+		ResultSet rs = null;
 		String numResi = "-1";
 
 		try {
-			PreparedStatement stm;
 			// Fixed: Look in familiar table for the relationship between user and resident
 			stm = con.prepareStatement("SELECT n_resi FROM familiar WHERE idUsuario = ?");
 
 			stm.setString(1, idUsuario);
 
-			ResultSet rs = stm.executeQuery();
+			rs = stm.executeQuery();
 
 			if (rs.next()) {
 				numResi = rs.getString("n_resi");
@@ -49,53 +51,81 @@ public class Residente {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (stm != null)
+					stm.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return numResi;
 	}
 
-	/**Saca los datos de BBDD del nombre, apellidos y numero de habitacion de la
-	tabla Residente
-	@author German Carrasco
-	@param numResi
-	@see buscarResi
-	@see mostrarCuidados
-	*/
-	
-	public static Residente mostrarResi(String idUsuario) {
+	/**
+	 * Saca los datos de BBDD del nombre, apellidos y numero de habitacion de la
+	 * tabla Residente
+	 * 
+	 * @author German Carrasco
+	 * @param numResi
+	 * @see buscarResi
+	 * @see mostrarCuidados
+	 */
 
+	public static Residente mostrarResi(String idUsuario) {
 
 		Residente residente = new Residente();
 
 		Connection con = ConexionBBDD.conectarBBDD();
+		PreparedStatement stm1 = null;
+		ResultSet rs1 = null;
 
 		try {
 			String numResi = buscarResi(idUsuario);
 
-			PreparedStatement stm1 = con.prepareStatement("SELECT * FROM residente WHERE n_resi = ?");
+			stm1 = con.prepareStatement("SELECT * FROM residente WHERE n_resi = ?");
 			stm1.setString(1, numResi);
-			ResultSet rs1 = stm1.executeQuery();
+			rs1 = stm1.executeQuery();
 			if (rs1.next()) {
 				residente.setNombre(rs1.getString("nombre"));
 				residente.setApellido(rs1.getString("apellido"));
 				residente.setEdad(rs1.getInt("edad"));
 				residente.setN_hab(rs1.getInt("n_hab"));
 			}
-			cuidados = mostrarCuidados(numResi); 
+			cuidados = mostrarCuidados(numResi);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (rs1 != null)
+					rs1.close();
+				if (stm1 != null)
+					stm1.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		// Llamamos a función para mostrar cuidados de cada Residente
-		
+
 		return residente;
 
 	}
-	/**Saca los datos de BBDD de la descripción y la fecha de la
-	tabla Cuidados
-	@author Irene Agea
-	@param numResi
-	@see Cuidado
-	*/
+
+	/**
+	 * Saca los datos de BBDD de la descripción y la fecha de la
+	 * tabla Cuidados
+	 * 
+	 * @author Irene Agea
+	 * @param numResi
+	 * @see Cuidado
+	 */
 	public static List<Cuidado> mostrarCuidados(String numResi) throws SQLException {
 
 		List<Cuidado> cuidados = new ArrayList<Cuidado>();
@@ -107,11 +137,11 @@ public class Residente {
 			stm.setString(1, numResi);
 			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {
-				 String descripcion = rs.getString("descripcion"); 
-				 String fecha =  rs.getString("fecha");
-				 Cuidado cuidado = new Cuidado(descripcion, fecha);
-				 
-				 cuidados.add(cuidado);
+				String descripcion = rs.getString("descripcion");
+				String fecha = rs.getString("fecha");
+				Cuidado cuidado = new Cuidado(descripcion, fecha);
+
+				cuidados.add(cuidado);
 			}
 			stm.close();
 			con.close();
@@ -121,8 +151,8 @@ public class Residente {
 		return cuidados;
 
 	}
-	
-	/** Getters y Setters*/
+
+	/** Getters y Setters */
 	public String getNombre() {
 		return nombre;
 	}

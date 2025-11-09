@@ -27,14 +27,15 @@ public class Usuario {
 		Usuario usuario = new Usuario();
 
 		Connection con = ConexionBBDD.conectarBBDD();
+		PreparedStatement stm = null;
+		ResultSet rs = null;
 
 		try {
-			PreparedStatement stm;
 			stm = con.prepareStatement("SELECT * FROM usuario WHERE idUsuario = ? AND contrasena = ?");
 
 			stm.setString(1, idUsuario);
 			stm.setString(2, pass);
-			ResultSet rs = stm.executeQuery();
+			rs = stm.executeQuery();
 			if (rs.next()) {
 				usuario.setIdUsuario(idUsuario);
 				usuario.setNombre(rs.getString("nombre"));
@@ -49,6 +50,17 @@ public class Usuario {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (stm != null)
+					stm.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return usuario;
