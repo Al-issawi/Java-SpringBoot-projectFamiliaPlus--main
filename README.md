@@ -7,10 +7,10 @@ Aplicación monolítica Spring Boot 2.6.7 con Thymeleaf para gestionar residente
 - Desarrollo local: rama `master` (localhost)
 - Despliegue: rama `main` (Railway)
 - Procedimiento:
-  1) Trabaja/commitea en `master`
-  2) `git checkout main && git merge master`
-  3) Asegura privacidad (sin credenciales en texto plano)
-  4) `git push origin main` (despliegue se dispara en Railway)
+  1. Trabaja/commitea en `master`
+  2. `git checkout main && git merge master`
+  3. Asegura privacidad (sin credenciales en texto plano)
+  4. `git push origin main` (despliegue se dispara en Railway)
 
 ## Configuración de entorno (privacidad)
 
@@ -27,18 +27,21 @@ Archivo: `src/main/resources/application.properties` (sin secretos en la rama `m
 
 Requisitos: Java 11+, Maven 3.6+, MySQL 8.0
 
-1) Clonar y entrar en el proyecto
+1. Clonar y entrar en el proyecto
+
 ```bash
 git clone https://github.com/Al-issawi/projectFamiliaPlus-main.git
 cd projectFamiliaPlus-master
 ```
 
-2) Crear base de datos
+2. Crear base de datos
+
 ```sql
 CREATE DATABASE familiaplus CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-3) Variables de entorno opcionales (si no usas los valores por defecto)
+3. Variables de entorno opcionales (si no usas los valores por defecto)
+
 ```bash
 # Windows PowerShell
 $env:MYSQL_URL="jdbc:mysql://localhost:3306/familiaplus?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
@@ -46,7 +49,8 @@ $env:MYSQL_USER="root"
 $env:MYSQL_PASSWORD="<tu_password>"
 ```
 
-4) Arrancar
+4. Arrancar
+
 ```bash
 mvn spring-boot:run
 ```
@@ -56,10 +60,12 @@ App en http://localhost:9000
 ## Despliegue en Railway (desde cero)
 
 Este repo incluye `railway.toml`:
+
 - build: `mvn clean package -DskipTests`
 - start: `java -Dserver.port=$PORT -jar target/*.jar`
 
 Pasos:
+
 1. En Railway, crea un nuevo proyecto y conecta el repo de GitHub.
 2. En el servicio web, define variables de entorno:
    - `MYSQL_URL` → URL JDBC de tu MySQL gestionado por Railway u otro proveedor
@@ -70,10 +76,19 @@ Pasos:
 5. Pulsa “Deploy” o “Redeploy” y revisa logs.
 
 Comprobación en logs: debería mostrarse algo como
+
 - `Conexión MySQL OK - Producción`
 - mensajes de inicialización de base de datos (DatabaseInitializer) si los scripts se ejecutan.
 
 Si prefieres PostgreSQL en Railway, hace falta un pequeño ajuste en `ConexionBBDD` para usar `DATABASE_URL` y el driver `org.postgresql.Driver`. Podemos realizarlo si lo solicitas.
+
+### Checklist rápido de despliegue
+
+- [ ] Repo conectado en Railway apuntando a rama `main`
+- [ ] `MYSQL_URL`, `MYSQL_USER`, `MYSQL_PASSWORD` configurados
+- [ ] Esquema MySQL importado una vez (`src/main/resources/database_init_mysql.sql`)
+- [ ] Push a `main` realizado
+- [ ] Logs muestran “Conexión MySQL OK - Producción”
 
 ## Estructura del proyecto
 
@@ -92,7 +107,7 @@ Si prefieres PostgreSQL en Railway, hace falta un pequeño ajuste en `ConexionBB
 ## Usuarios de prueba (ejemplo)
 
 | Usuario   | Contraseña | Rol           |
-|-----------|------------|---------------|
+| --------- | ---------- | ------------- |
 | admin     | admin123   | administrador |
 | personal1 | pass123    | personal      |
 | familiar1 | pass123    | familiar      |
