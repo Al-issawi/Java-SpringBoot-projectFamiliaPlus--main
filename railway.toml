@@ -1,11 +1,18 @@
-# Railway Deployment Configuration
-# This file helps Railway understand how to deploy your Spring Boot app
-
-# Build command - Railway will run this to compile your app
-build = "mvn clean package -DskipTests"
-
-# Start command - How Railway should start your app  
-start = "java -Dserver.port=$PORT -jar target/*.jar"
-
-# Environment - Production profile
 environment = "production"
+#############################################
+# Railway Deployment Configuration (TOML)   #
+#############################################
+
+# Use table sections so Railway parses correctly.
+
+[build]
+command = "mvn -q clean package -DskipTests"
+
+[deploy]
+startCommand = "java -Dserver.port=$PORT -jar target/familia_plus-0.0.1-SNAPSHOT.jar"
+
+[env]
+SPRING_PROFILES_ACTIVE = "production"
+# MYSQL_URL / MYSQL_USER / MYSQL_PASSWORD must be set in the Railway UI
+
+# (Optional) If you later change artifact name/group/version adjust startCommand accordingly.
