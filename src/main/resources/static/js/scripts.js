@@ -55,11 +55,8 @@ function handleEscapeKey(event) {
 
 // Close modal on outside click
 function handleOutsideClick(event) {
-  const modalContent = document.getElementById("modalForm2");
-  if (
-    event.target === event.currentTarget &&
-    !modalContent.contains(event.target)
-  ) {
+  // Close when clicking the dark overlay (outside of modal content)
+  if (event.target.classList && event.target.classList.contains("modal")) {
     cerrarF();
   }
 }
@@ -193,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Allow Tab navigation in modal
     if (e.key === "Tab") {
       const modal = document.getElementById("modalForm1");
-      if (modal && modal.style.display === "block") {
+      if (modal && modal.style.display !== "none") {
         // Implement focus trapping logic here if needed
       }
     }
@@ -388,6 +385,7 @@ function zoomImage(button) {
   const modalImg = document.getElementById("modalImage");
 
   if (img && modal && modalImg) {
+    modal.style.display = "block";
     modal.classList.add("active");
     modalImg.src = img.src;
     modalImg.alt = img.alt;
@@ -396,6 +394,33 @@ function zoomImage(button) {
     // Close on Escape key
     document.addEventListener("keydown", handleImageModalEscape);
   }
+}
+
+// Close image modal (bound to X button and ESC)
+function closeImageModal() {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  if (modal) {
+    modal.classList.remove("active");
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+  if (modalImg) {
+    modalImg.removeAttribute("src");
+    modalImg.removeAttribute("alt");
+  }
+  document.removeEventListener("keydown", handleImageModalEscape);
+}
+
+function handleImageModalEscape(e) {
+  if (e.key === "Escape") {
+    closeImageModal();
+  }
+}
+
+// Alias to match template inline handler
+function closeModal() {
+  cerrarF();
 }
 
 function closeImageModal() {

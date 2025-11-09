@@ -3,224 +3,241 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FAMILIA-PLUS - Centro de Cuidados para Mayores</title>
-    <meta
-      name="description"
-      content="Centro especializado en cuidados para personas mayores con servicios integrales y atención personalizada."
+    <title>FAMILIA+</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      th:href="@{/favicon.svg}"
+      href="/favicon.svg"
     />
-    <link rel="stylesheet" href="css/hoja1.css" />
-    <link rel="stylesheet" href="css/login-enhancements.css" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="/css/main.css" />
     <script
       src="https://kit.fontawesome.com/3b7dae609c.js"
       crossorigin="anonymous"
     ></script>
+    <script th:src="@{/js/scripts.js}" src="/js/scripts.js" defer></script>
   </head>
-  <body>
-    <nav class="modern-nav">
-      <div class="nav-container">
-        <div class="nav-brand">
-          <h2>FAMILIA-PLUS</h2>
-          <p class="nav-subtitle">Cuidando con amor y profesionalidad</p>
-        </div>
-
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          aria-label="Toggle navigation"
-        >
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-
-        <ul class="nav-menu" id="navMenu">
-          <li class="nav-item active">
-            <a th:href="@{/index}" class="nav-link">
-              <i class="fas fa-home"></i> Inicio
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/sobreNosotros}" class="nav-link">
-              <i class="fas fa-heart"></i> Sobre Nosotros
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/menu}" class="nav-link">
-              <i class="fas fa-utensils"></i> Menú Mensual
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/actividades}" class="nav-link">
-              <i class="fas fa-calendar-alt"></i> Actividades
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/contacto}" class="nav-link">
-              <i class="fas fa-phone"></i> Contacto
-            </a>
-          </li>
+  <body class="index-page">
+    <!-- Top Navigation Bar -->
+    <header class="index-nav">
+      <div class="nav-brand">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <span>FAMILIA+</span>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a th:href="@{/index}">Inicio</a></li>
+          <li><a th:href="@{/sobreNosotros}">Sobre Nosotros</a></li>
+          <li><a th:href="@{/menu}">Menú</a></li>
+          <li><a th:href="@{/actividades}">Actividades</a></li>
+          <li><a th:href="@{/contacto}">Contacto</a></li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
-    <main class="main-content">
-      <div class="page-header">
-        <h1>Bienvenido a FAMILIA-PLUS</h1>
-        <p class="page-subtitle">
-          Acceso al sistema de gestión de cuidados especializados
-        </p>
-        <!-- Error message display -->
-        <div th:if="${error}" class="error-alert">
-          <i class="fas fa-exclamation-triangle"></i>
-          <span th:text="${error}"></span>
+    <!-- Split Screen Layout -->
+    <main class="index-split-container">
+      <!-- Left Side: Hero -->
+      <section
+        class="hero-side"
+        th:style="'background-image: url(' + @{/media/Posible\ Hero\ Image.jpg} + ');'"
+        style="background-image: url('/media/Posible Hero Image.jpg')"
+      >
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fa-solid fa-shield-heart"></i>
+          </div>
+          <h1 class="hero-title">Bienvenido a FAMILIA-plus</h1>
+          <p class="hero-subtitle">
+            Sistema integral de gestión para el cuidado especializado de
+            nuestros residentes
+          </p>
+          <div class="hero-features">
+            <div class="feature-item">
+              <i class="fa-solid fa-user-nurse"></i>
+              <span>Cuidado Profesional</span>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>Seguimiento Diario</span>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Gestión Eficiente</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <!--LOGIN FORM-->
-      <div class="login-container">
-        <form
-          th:action="@{/login}"
-          th:object="${usuario}"
-          method="post"
-          novalidate
-          class="login-form"
-          id="loginForm"
-        >
-          <div class="contenedorLogin">
-            <h3 class="login-title">
-              <i class="fas fa-sign-in-alt"></i> Acceso al Sistema
-            </h3>
+      </section>
 
-            <div class="form-group">
-              <label for="idUsuario"><b>Usuario</b></label>
-              <div class="input-container">
-                <input
-                  type="text"
-                  placeholder="Introducir Usuario"
-                  id="idUsuario"
-                  th:field="*{idUsuario}"
-                  required
-                  aria-describedby="usuario-error"
-                  class="form-input"
-                />
-                <div class="input-icon">
-                  <i class="fas fa-user"></i>
-                </div>
-              </div>
-              <div class="error-message" id="usuario-error"></div>
+      <!-- Right Side: Login -->
+      <section class="login-side">
+        <div class="login-wrapper">
+          <div class="login-header">
+            <h2>Acceso al Sistema</h2>
+            <p>Ingrese sus credenciales para continuar</p>
+          </div>
+
+          <form
+            th:action="@{/login}"
+            th:object="${usuario}"
+            method="post"
+            class="modern-login-form"
+          >
+            <!-- Error message -->
+            <div th:if="${error}" class="alert-error">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span th:text="${error}"></span>
             </div>
 
             <div class="form-group">
-              <label for="pass"><b>Contraseña</b></label>
-              <div class="input-container">
-                <input
-                  type="password"
-                  placeholder="Introducir Contraseña"
-                  th:field="*{contrasena}"
-                  id="pass"
-                  required
-                  aria-describedby="password-error"
-                  class="form-input"
-                />
-                <div class="input-icon">
-                  <i class="fas fa-lock"></i>
-                </div>
-              </div>
-              <div class="error-message" id="password-error"></div>
+              <label for="idUsuario">
+                <i class="fa-solid fa-user"></i>
+                Usuario
+              </label>
+              <input
+                type="text"
+                id="idUsuario"
+                th:field="*{idUsuario}"
+                placeholder="Ingrese su usuario"
+                required
+              />
             </div>
 
-            <button type="submit" class="login-btn" id="loginBtn">
-              <span class="btn-text">
-                <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Entrar
-              </span>
-              <span class="btn-loader" style="display: none">
-                <i class="fas fa-spinner fa-spin"></i> Iniciando sesión...
-              </span>
+            <div class="form-group">
+              <label for="pass">
+                <i class="fa-solid fa-lock"></i>
+                Contraseña
+              </label>
+              <input
+                type="password"
+                id="pass"
+                th:field="*{contrasena}"
+                placeholder="Ingrese su contraseña"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn-primary">
+              <span>Iniciar Sesión</span>
+              <i class="fa-solid fa-arrow-right"></i>
             </button>
+          </form>
 
-            <button
-              onclick="modalForm1()"
-              type="button"
-              class="forgot-password-btn"
-              aria-describedby="modal-description"
-            >
-              <i class="fas fa-question-circle" aria-hidden="true"></i>
+          <div class="login-footer">
+            <button onclick="modalForm1()" class="link-button">
+              <i class="fa-solid fa-circle-question"></i>
               ¿Olvidaste tu contraseña?
             </button>
           </div>
-        </form>
-      </div>
+
+          <div class="login-info">
+            <p>
+              <i class="fa-solid fa-info-circle"></i> Sistema seguro y
+              encriptado
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <!-- Enhanced Modal -->
-    <div
-      id="modalForm1"
-      class="modal-overlay"
-      role="dialog"
-      aria-labelledby="modal-title"
-      aria-describedby="modal-description"
-      aria-hidden="true"
-    >
-      <div id="modalForm2" class="modal-content">
-        <div class="modal-header">
-          <h3 id="modal-title">
-            <i class="fas fa-key"></i> Recuperar Contraseña
-          </h3>
-          <button
-            onclick="cerrarF()"
-            type="button"
-            class="modal-close"
-            aria-label="Cerrar ventana"
-          >
-            <i class="fas fa-times" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="modal-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <p id="mensaje" aria-describedby="modal-description">
-            Póngase en contacto con el administrador para recuperar su
-            contraseña.
-          </p>
-          <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-phone"></i>
-              <span>+34 123 456 789</span>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <span>admin@familia-plus.com</span>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button onclick="cerrarF()" type="button" class="modal-btn">
-            <i class="fas fa-check" aria-hidden="true"></i> Entendido
-          </button>
-        </div>
+    <!-- MODAL CONTRASEÑA OLVIDADA -->
+    <div id="modalForm1" class="modal" style="display: none">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>Recuperar Contraseña</h3>
+        <p>
+          Contacte con el administrador del sistema para recuperar su
+          contraseña.
+        </p>
+        <button onclick="closeModal()" class="modal-btn">Cerrar</button>
       </div>
     </div>
 
-    <footer class="modern-footer">
+    <!-- Image Zoom Modal -->
+    <div id="imageModal" class="image-modal">
+      <span class="close-modal" onclick="closeImageModal()">&times;</span>
+      <img class="modal-content" id="modalImage" />
+    </div>
+
+    <footer class="footer">
       <div class="footer-content">
+        <div class="footer-section footer-logo">
+          <div class="logo-wrapper">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h4>FAMILIA+</h4>
+          </div>
+          <p>Cuidando con amor y profesionalidad desde 2010</p>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i>
+            Villaviciosa de Odón, Madrid
+          </p>
+        </div>
         <div class="footer-section">
-          <h3>FAMILIA-PLUS</h3>
-          <p>Cuidando con amor y profesionalidad</p>
+          <h4>Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li>
+              <a th:href="@{/index}"
+                ><i class="fa-solid fa-angle-right"></i> Inicio</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/sobreNosotros}"
+                ><i class="fa-solid fa-angle-right"></i> Sobre Nosotros</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/actividades}"
+                ><i class="fa-solid fa-angle-right"></i> Actividades</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/contacto}"
+                ><i class="fa-solid fa-angle-right"></i> Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p class="footer-contact">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+34918000000">+34 918 000 000</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@familia-plus.es">info@familia-plus.es</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-clock"></i>
+            24/7 Atención Continua
+          </p>
         </div>
         <div class="footer-section">
           <h4>Síguenos</h4>
           <div class="social-icons">
-            <i class="fab fa-facebook-square"></i>
-            <i class="fab fa-twitter-square"></i>
-            <i class="fab fa-instagram-square"></i>
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 FAMILIA-PLUS. Todos los derechos reservados.</p>
+        <p>
+          &copy; 2024 FAMILIA+. Todos los derechos reservados. |
+          <a href="#">Política de Privacidad</a> |
+          <a href="#">Términos de Uso</a>
+        </p>
       </div>
     </footer>
-
-    <script src="js/scripts.js"></script>
   </body>
 </html>

@@ -1,10 +1,5 @@
 package controllers;
 
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,39 +32,37 @@ public class FamiliaController {
 	@PostMapping("/login")
 	public String login(Usuario usuario, BindingResult result, Model model) {
 
-		Usuario usuarioEncontrado = usuario.buscar(usuario.getIdUsuario(), usuario.getContrasena());
+		Usuario loggedUser = usuario.buscar(usuario.getIdUsuario(), usuario.getContrasena());
 
-		// Check if user was found and has a valid type
-		if (usuarioEncontrado != null && usuarioEncontrado.getTipo() != null
-				&& !usuarioEncontrado.getTipo().isEmpty()) {
-			if (usuarioEncontrado.getTipo().equals("P")) {
-				model.addAttribute("personal", usuarioEncontrado);
-				Cuidado c = new Cuidado();
-				model.addAttribute("cuidado", c);
-				return "personal";
-			} else if (usuarioEncontrado.getTipo().equals("F")) {
-				try {
-					Residente residente = Residente.mostrarResi(usuarioEncontrado.getIdUsuario());
-					model.addAttribute("residente", residente);
-					return "familiar";
-				} catch (Exception e) {
-					// If there's an error getting resident data, create a mock one for demo
-					Residente residente = new Residente();
-					residente.setN_resi("1");
-					residente.setNombre("Juan");
-					residente.setApellido("Pérez");
-					residente.setEdad(75);
-					residente.setN_hab(101);
-					model.addAttribute("residente", residente);
-					return "familiar";
-				}
-			}
+		// Check if user was found
+		if (loggedUser == null || loggedUser.getTipo() == null) {
+			model.addAttribute("error", "Usuario o contraseña incorrectos");
+			model.addAttribute("usuario", new Usuario());
+			return "index";
 		}
 
-		// If login fails, return to index with error message
-		model.addAttribute("usuario", new Usuario());
-		model.addAttribute("error", "Credenciales incorrectas. Prueba con: admin/admin o demo/demo");
-		return "index";
+		// Check user type based on database values
+		if (loggedUser.getTipo().equals("personal")) {
+			model.addAttribute("personal", loggedUser);
+			Cuidado c = new Cuidado();
+			// Pasamos usuario vacío al formulario
+			model.addAttribute("cuidado", c);
+			return "personal";
+		} else if (loggedUser.getTipo().equals("administrador")) {
+			model.addAttribute("personal", loggedUser);
+			Cuidado c = new Cuidado();
+			model.addAttribute("cuidado", c);
+			return "personal"; // Admin uses same interface as personal
+		} else if (loggedUser.getTipo().equals("familiar")) {
+			Residente residente = Residente.mostrarResi(loggedUser.getIdUsuario());
+			model.addAttribute("residente", residente);
+			return "familiar";
+		} else {
+			model.addAttribute("error", "Tipo de usuario no válido");
+			model.addAttribute("usuario", new Usuario());
+			return "index";
+		}
+
 	}
 
 	@PostMapping("/introducirDatos")
@@ -83,13 +76,6 @@ public class FamiliaController {
 	 * Enlaces al menú superior
 	 * 
 	 * @author Irene Agea
-	 * @version 1.0
-	 * @date 2023-6-10
-	 * 
-	 * 
-	 * @author Mohammed alisawi
-	 * @version 1.1
-	 * @date 2025-10-26
 	 */
 
 	@GetMapping("/index")
@@ -118,26 +104,6 @@ public class FamiliaController {
 	@RequestMapping("/contacto")
 	public String contacto() {
 		return "contacto";
-	}
-
-	@GetMapping("/download/activities-schedule")
-	public ResponseEntity<Resource> downloadActivitiesSchedule() {
-		try {
-			// Create a resource for the PDF file
-			Resource resource = new ClassPathResource("static/documents/menu-mensual.pdf");
-
-			if (resource.exists()) {
-				return ResponseEntity.ok()
-						.contentType(MediaType.APPLICATION_PDF)
-						.header(HttpHeaders.CONTENT_DISPOSITION,
-								"attachment; filename=\"Menu-Mensual-FAMILIA-PLUS.pdf\"")
-						.body(resource);
-			} else {
-				return ResponseEntity.notFound().build();
-			}
-		} catch (Exception e) {
-			return ResponseEntity.internalServerError().build();
-		}
 	}
 
 }

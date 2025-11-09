@@ -1,99 +1,168 @@
-# Proyecto DAW 2021/2023 - Familia+
-## Equipo 06
+# FAMILIA-PLUS - Sistema de Gestión para Residencias
 
-**Nota Importante:**  
-Este proyecto ya no está disponible en el servidor. Sin embargo, si estás interesado en trabajar con el código localmente, aquí te dejamos las instrucciones y algunos detalles técnicos.
+Hey! Este es nuestro proyecto final para el curso de DAW. Desarrollamos un sistema web para gestionar residencias de ancianos.
 
-## ¿Por qué retiramos el proyecto del servidor?
+## ¿Qué hace la aplicación?
 
-El proyecto Familia+ ya no está activo en el servidor por razones mantenimiento, migración. Aunque ya no esté en línea, el código sigue disponible y puedes usarlo para aprender, modificar o desplegar tu propia versión.
+Básicamente, permite administrar toda la información de una residencia: los residentes, el personal que trabaja allí, sus familiares, las actividades que se realizan y llevar un registro de los cuidados médicos. La idea es facilitar el trabajo del día a día en este tipo de centros.
 
-##  Un resumen de las funciones que puedes explorar:
+## Stack tecnológico
 
-- Clasificación de usuarios
-- Gestión de perfiles y datos personales
-- Administración de la base de datos
-- Gestión del sistema completo
+Decidimos usar:
 
-## Base de Datos: MySQL
+- **Backend:** Java con Spring Boot (versión 2.6.7)
+- **Base de datos:** MySQL 8.0
+- **Frontend:** HTML, CSS, JavaScript y Thymeleaf para las plantillas
+- **Otras herramientas:** Maven para gestión de dependencias, Git para control de versiones y Railway para el deploy
 
-Si decides trabajar con el proyecto, estas son las entidades clave que se convierten en tablas dentro de la base de datos:
+## Base de datos
 
-- **USUARIO**: Información personal y datos de acceso
-- **RESIDENTE**: Datos de los residentes
-- **CUIDADOS**: Registros de cuidados diarios
-- **PERSONAL**: Información del personal
-- **CENTRO**: Detalles del centro de operación
-- **PERTENECE**: Relación entre personal y centro
-- **CIUDAD**: Información de la ciudad y provincia
+Creamos 6 tablas principales para organizar toda la información:
 
-### Pasos para Configurar la Base de Datos
+- **usuario** → Los diferentes tipos de usuarios (administradores, personal, familiares)
+- **residente** → Información personal de cada residente
+- **personal** → Datos de empleados y trabajadores
+- **familiar** → Contactos familiares de los residentes
+- **cuidado** → Historial de cuidados y tratamientos médicos
+- **actividad** → Actividades programadas (ejercicios, talleres, etc.)
 
-1. **Convertir Entidades en Tablas:**  
-   Por ejemplo, la entidad **USUARIO** se convierte en una tabla con columnas como código, nombre, apellidos, dirección, email, etc.
+## Cómo configurarlo en local
 
-2. **Definir los Atributos como Columnas:**  
-   Cada atributo de una entidad será una columna en la tabla correspondiente. Por ejemplo:
-   - **USUARIO**: (código, nombre, apellidos, dirección, email, móvil, fecha de alta, contrato)
-   - **RESIDENTE**: (código, nombre, edad, habitación, fecha de alta)
+### Lo que necesitas tener instalado:
 
-3. **Asignar Identificadores Principales:**  
-   Cada tabla tendrá un identificador único, como código_usuario para la tabla de usuarios.
+- Java 11 (o más reciente)
+- MySQL 8.0
+- Maven 3.6+
 
-4. **Modelo Relacional:**  
-   Aquí es donde se define cómo se relacionan las tablas entre sí. Por ejemplo:
-   - **USUARIO** está relacionado con **RESIDENTE** a través de código_usuario.
-   - **CUIDADOS** está relacionado con **RESIDENTE** y **PERSONAL**.
+### Pasos para hacerlo funcionar:
 
-### Base de Datos Corregida
+1. **Clona el repo:**
 
-Aquí tienes un resumen de cómo quedaría la base de datos después de las correcciones:
+   ```bash
+   git clone https://github.com/Al-issawi/projectFamiliaPlus-main.git
+   cd projectFamiliaPlus-master
+   ```
 
-- **USUARIO**: (cod_usuario, nombre, apellidos, email, fecha_alta, contraseña)
-- **RESIDENTE**: (n_resi, nombre, apellidos, edad, n_hab, cod_usuario, código)
-- **CUIDADO**: (n_resi, ID, descripción, fecha)
-- **PERSONAL**: (ID, nombre, apellidos, puesto, contraseña)
-- **PERTENECE**: (ID, código)
-- **CENTRO**: (código, nombre, dirección, CP, teléfono)
-- **CIUDAD**: (CP, ciudad, provincia)
+2. **Configura MySQL:**
+   Primero crea la base de datos:
 
+   ```sql
+   mysql -u root -p
+   CREATE DATABASE familiaplus CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   ```
 
-## Diagramas
+3. **Inicializa las tablas:**
+   Ejecuta nuestro script que crea todo automáticamente:
 
-Para entender mejor el proyecto, aquí tienes algunos diagramas que muestran la estructura y flujo de la aplicación:
+   ```bash
+   mysql -u root -p < setup_simple.sql
+   ```
 
-- **Base Relacional - Diagrama Dia.ai**  
-  ![Base Relacional Diagrama](./BaseRelacionadoDiagrama.png)
+4. **Ajusta las credenciales:**
+   Edita el archivo `src/main/resources/application.properties` y pon tu usuario/contraseña de MySQL
 
-- **Diagrama de Base de Datos (DDBB)**  
-  ![DDBB Diagrama](./DiagramaDDBB.png)
+5. **Arranca la app:**
 
-- **Diagrama de Clases**  
-  ![Diagrama de Clases](./DiagramaDeClases.jpg)
+   ```bash
+   mvn spring-boot:run
+   ```
 
-- **Diagrama de Flujo**  
-  ![Diagrama de Flujo](./diagramaDeFlujo.jpg)
+6. **¡Listo!**
+   Abre http://localhost:9000 en tu navegador
 
-- **Diagrama de Tecnología**  
-  ![Diagrama de Tecnología](./diagramaDeTecnologia.jpg)
+## Deploy en producción
 
-## Conexión a la BBDD en el Servidor Heroku
+Usamos Railway para el despliegue porque es súper fácil. La app detecta automáticamente si está en local o producción:
 
-Aunque el proyecto ya no está en Heroku, te dejamos aquí algunos detalles sobre cómo se conectaba la base de datos en ese entorno:
+- **Local:** Usa MySQL en tu máquina (localhost:3306)
+- **Producción:** Se conecta automáticamente a la base de datos que Railway te asigna
 
-- **Conexión a Heroku**  
-  ![Conexión a Heroku](./herukoconeccion3.jpg)
+Solo tienes que conectar tu repo de GitHub con Railway y se despliega automáticamente cada vez que haces push.
 
-  ![Conexión a Heroku 2](./herukoconeccion2.jpg)
+## Estructura del proyecto
 
-  ![Servidor Heroku con MySQL](./serverHerokuConMYSQL.png)
+El proyecto está organizado más o menos así:
 
+- `src/main/java/` - Todo el código Java
+  - `bbdd/` - Las clases para conectar con la base de datos
+  - `controllers/` - Los controladores web (Spring MVC)
+  - `model/` - Las clases modelo (Usuario, Residente, etc.)
+  - `inicio/` - La clase principal que arranca Spring Boot
+- `src/main/resources/` - Recursos del proyecto
+  - `static/` - CSS, JavaScript e imágenes
+  - `templates/` - Las páginas HTML (Thymeleaf)
+  - `application.properties` - Configuración de la app
+- `setup_simple.sql` - Script para crear la base de datos
+- Y algunos archivos más de configuración (pom.xml, etc.)
 
-- **Test**  
-  ![Prueba Heroku](./pruebaHeroku1.png)
+## Usuarios para probar
 
-  ![Prueba](./prueba14.jpg)
+Creamos estos usuarios de ejemplo para que puedas probar todas las funciones:
 
+| Usuario   | Contraseña | Tipo que es   |
+| --------- | ---------- | ------------- |
+| admin     | admin123   | administrador |
+| personal1 | pass123    | personal      |
+| familiar1 | pass123    | familiar      |
 
-- **MVC**  
-  ![Diagrama MVC](./MVCDiagrama.jpg)
+## Qué puedes hacer según tu rol
+
+**Si eres administrador:**
+
+- Crear y gestionar todos los usuarios
+- Ver toda la información de residentes
+- Controlar el personal que trabaja
+- Generar reportes (cuando lo terminemos)
+
+**Si eres personal/trabajador:**
+
+- Registrar cuidados que das a los residentes
+- Programar actividades y eventos
+- Ver la info de tus residentes asignados
+
+**Si eres familiar:**
+
+- Ver la información de tu familiar residente
+- Consultar qué cuidados ha recibido
+- Ver las actividades programadas
+
+## Últimos cambios
+
+### Noviembre 2025 - Versión actual
+
+Hicimos bastantes mejoras importantes:
+
+**Lo más destacado:**
+
+- Cambiamos toda la base de datos a MySQL (antes teníamos PostgreSQL)
+- Ahora funciona tanto en local como en producción sin problemas
+- Creamos scripts automáticos para inicializar la BD
+- Añadimos datos de prueba para que sea más fácil testear
+- Mejoré mucho la documentación (este README)
+
+**Cambios técnicos que hicimos:**
+
+- Actualizamos `application.properties` para MySQL
+- Reescribimos la clase `ConexionBBDD.java` para que sea más robusta
+- Creamos `DatabaseInitializer.java` para que se configure todo automáticamente
+- Los scripts SQL ahora están optimizados para MySQL
+- Configuramos variables de entorno para el deploy
+
+## Quieres contribuir?
+
+Si quieres ayudar a mejorar el proyecto:
+
+1. Haz fork del repo
+2. Crea tu rama para la nueva función (`git checkout -b mi-nueva-funcion`)
+3. Haz commit de tus cambios (`git commit -am 'Añado esta función genial'`)
+4. Sube tus cambios (`git push origin mi-nueva-funcion`)
+5. Abre un Pull Request
+
+## Contacto
+
+Si tienes algún problema o pregunta, puedes contactarnos por aquí mismo (GitHub Issues) o buscar al equipo de desarrollo.
+
+---
+
+**Equipo 06 - DAW 2021/2023**  
+_"Espero que os guste cómo quedó!"_ 😊

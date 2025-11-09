@@ -35,7 +35,8 @@ public class Residente {
 
 		try {
 			PreparedStatement stm;
-			stm = con.prepareStatement("SELECT n_resi FROM residente WHERE idUsuario = ?");
+			// Fixed: Look in familiar table for the relationship between user and resident
+			stm = con.prepareStatement("SELECT n_resi FROM familiar WHERE idUsuario = ?");
 
 			stm.setString(1, idUsuario);
 
@@ -43,6 +44,8 @@ public class Residente {
 
 			if (rs.next()) {
 				numResi = rs.getString("n_resi");
+			} else {
+				System.out.println("El residente no encontrado para usuario: " + idUsuario);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

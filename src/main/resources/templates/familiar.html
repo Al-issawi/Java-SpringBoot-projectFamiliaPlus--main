@@ -3,146 +3,231 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portal Familiar - FAMILIA-PLUS</title>
-    <link rel="stylesheet" href="css/hoja1.css" />
+    <title>FAMILIA+</title>
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      th:href="@{/favicon.svg}"
+      href="/favicon.svg"
+    />
+
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="/css/main.css" />
     <script
       src="https://kit.fontawesome.com/3b7dae609c.js"
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
-    <nav class="modern-nav">
-      <div class="nav-container">
-        <div class="nav-brand">
-          <h2>FAMILIA-PLUS</h2>
-          <p class="nav-subtitle">Cuidando con amor y profesionalidad</p>
-        </div>
-        <ul class="nav-menu">
-          <li class="nav-item">
-            <a th:href="@{/index}" class="nav-link">
-              <i class="fas fa-home"></i> Inicio
-            </a>
+  <body class="page familiar-page">
+    <header id="encabezado">
+      <nav>
+        <ul id="menu">
+          <li class="elementoMenu"><a th:href="@{/index}">Inicio</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/sobreNosotros}">Sobre Nosotros</a>
           </li>
-          <li class="nav-item">
-            <a th:href="@{/sobreNosotros}" class="nav-link">
-              <i class="fas fa-heart"></i> Sobre Nosotros
-            </a>
+          <li class="elementoMenu"><a th:href="@{/menu}">Menú Mensual</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/actividades}">Actividades</a>
           </li>
-          <li class="nav-item">
-            <a th:href="@{/menu}" class="nav-link">
-              <i class="fas fa-utensils"></i> Menú Mensual
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/actividades}" class="nav-link">
-              <i class="fas fa-calendar-alt"></i> Actividades
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/contacto}" class="nav-link">
-              <i class="fas fa-phone"></i> Contacto
-            </a>
-          </li>
+          <li class="elementoMenu"><a th:href="@{/contacto}">Contacto</a></li>
         </ul>
-      </div>
-    </nav>
-
-    <main class="main-content">
-      <div class="page-header">
-        <h1><i class="fas fa-user-friends"></i> Portal Familiar</h1>
-        <p class="page-subtitle">
-          Información actualizada sobre el cuidado de su ser querido
-        </p>
-      </div>
-
-      <div class="family-dashboard">
-        <section class="resident-info-section">
-          <h2><i class="fas fa-user-circle"></i> Información del Residente</h2>
-          <div class="resident-card">
-            <div class="resident-details">
-              <div class="detail-item">
-                <span class="detail-label">Nombre:</span>
-                <span class="detail-value" th:text="${residente.nombre}"
-                  >-</span
-                >
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Apellidos:</span>
-                <span class="detail-value" th:text="${residente.apellido}"
-                  >-</span
-                >
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Edad:</span>
-                <span class="detail-value" th:text="${residente.edad}">-</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Habitación:</span>
-                <span class="detail-value" th:text="${residente.n_hab}">-</span>
-              </div>
-            </div>
+      </nav>
+      <h1 id="nombreVentana">
+        <i class="fa-solid fa-house-medical"></i>
+        Panel Familiar
+      </h1>
+    </header>
+    <main>
+      <!-- Dashboard Header -->
+      <section class="dashboard-header">
+        <div class="welcome-card">
+          <div class="welcome-icon">
+            <i class="fa-solid fa-heart"></i>
           </div>
-        </section>
+          <div class="welcome-text">
+            <h2>Información de su Familiar</h2>
+            <p>
+              Manténgase informado sobre el cuidado y bienestar de su ser
+              querido
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <section class="care-log-section">
-          <h2><i class="fas fa-notes-medical"></i> Registro de Cuidados</h2>
-          <div class="care-log-container">
-            <div class="care-item" th:each="cuidado: ${residente.cuidados}">
-              <div class="care-date">
-                <i class="fas fa-calendar-day"></i>
-                <span th:text="${cuidado.fecha}">Fecha</span>
-              </div>
-              <div class="care-description">
-                <i class="fas fa-clipboard-list"></i>
-                <p th:text="${cuidado.descripcion}">Descripción del cuidado</p>
-              </div>
-            </div>
+      <!-- Resident Info Card -->
+      <div class="resident-info-card">
+        <div class="card-header">
+          <i class="fa-solid fa-user-circle"></i>
+          <h2>Datos del Residente</h2>
+        </div>
+        <div class="contenedorTabla1">
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <td><i class="fa-solid fa-signature"></i> Nombre</td>
+                <td><i class="fa-solid fa-id-badge"></i> Apellido</td>
+                <td><i class="fa-solid fa-cake-candles"></i> Edad</td>
+                <td><i class="fa-solid fa-door-open"></i> Habitación</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td th:text="${residente.nombre}"></td>
+                <td th:text="${residente.apellido}"></td>
+                <td th:text="${residente.edad}"></td>
+                <td th:text="${residente.n_hab}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Care Records -->
+      <div class="care-records-section">
+        <div class="card-header">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <h2>Registro de Cuidados y Atenciones</h2>
+        </div>
+        <div class="contenedorTabla2">
+          <table class="modern-table care-table">
+            <thead>
+              <tr>
+                <td><i class="fa-solid fa-calendar-day"></i> Fecha</td>
+                <td>
+                  <i class="fa-solid fa-file-medical-alt"></i> Descripción del
+                  Cuidado
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="cuidado: ${residente.cuidados}">
+                <td th:text="${cuidado.fecha}" class="date-cell"></td>
+                <td
+                  th:text="${cuidado.descripcion}"
+                  class="description-cell"
+                ></td>
+              </tr>
+              <tr th:if="${#lists.isEmpty(residente.cuidados)}">
+                <td colspan="2" class="no-records">
+                  <i class="fa-solid fa-info-circle"></i>
+                  No hay registros de cuidados disponibles en este momento
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <section class="family-stats">
+        <div class="stat-box">
+          <i class="fa-solid fa-notes-medical"></i>
+          <div class="stat-content">
             <div
-              class="no-care-records"
-              th:if="${#lists.isEmpty(residente.cuidados)}"
+              class="stat-value"
+              th:text="${#lists.size(residente.cuidados)}"
             >
-              <i class="fas fa-info-circle"></i>
-              <p>No hay registros de cuidados disponibles en este momento.</p>
+              0
             </div>
+            <div class="stat-label">Registros Totales</div>
           </div>
-        </section>
-
-        <section class="family-actions">
-          <h2><i class="fas fa-tools"></i> Acciones Disponibles</h2>
-          <div class="action-buttons">
-            <button class="action-btn primary">
-              <i class="fas fa-download"></i>
-              Descargar Informe
-            </button>
-            <button class="action-btn secondary">
-              <i class="fas fa-envelope"></i>
-              Contactar Personal
-            </button>
-            <button class="action-btn tertiary">
-              <i class="fas fa-calendar-plus"></i>
-              Solicitar Visita
-            </button>
+        </div>
+        <div class="stat-box">
+          <i class="fa-solid fa-user-nurse"></i>
+          <div class="stat-content">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Atención Continua</div>
           </div>
-        </section>
-      </div>
+        </div>
+        <div class="stat-box">
+          <i class="fa-solid fa-shield-heart"></i>
+          <div class="stat-content">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Compromiso</div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer class="modern-footer">
+    <footer class="footer">
       <div class="footer-content">
-        <div class="footer-section">
-          <h3>FAMILIA-PLUS</h3>
-          <p>Cuidando con amor y profesionalidad</p>
+        <div class="footer-section footer-logo">
+          <div class="logo-wrapper">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h4>FAMILIA-PLUS</h4>
+          </div>
+          <p>Cuidando con amor y profesionalidad desde 2010</p>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i>
+            Villaviciosa de Odón, Madrid
+          </p>
         </div>
         <div class="footer-section">
-          <h4>Portal Familiar</h4>
-          <p>Mantente conectado con el cuidado de tu ser querido</p>
+          <h4>Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li>
+              <a th:href="@{/index}"
+                ><i class="fa-solid fa-angle-right"></i> Inicio</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/sobreNosotros}"
+                ><i class="fa-solid fa-angle-right"></i> Sobre Nosotros</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/actividades}"
+                ><i class="fa-solid fa-angle-right"></i> Actividades</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/contacto}"
+                ><i class="fa-solid fa-angle-right"></i> Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p class="footer-contact">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+34918000000">+34 918 000 000</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@familia-plus.es">info@familia-plus.es</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-clock"></i>
+            24/7 Atención Continua
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 FAMILIA-PLUS. Todos los derechos reservados.</p>
+        <p>
+          &copy; 2024 FAMILIA-PLUS. Todos los derechos reservados. |
+          <a href="#">Política de Privacidad</a> |
+          <a href="#">Términos de Uso</a>
+        </p>
       </div>
     </footer>
-
-    <script src="js/scripts.js"></script>
   </body>
 </html>

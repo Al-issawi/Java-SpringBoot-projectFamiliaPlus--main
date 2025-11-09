@@ -3,150 +3,205 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menú Mensual - FAMILIA-PLUS</title>
-    <link rel="stylesheet" href="css/hoja1.css" />
-    <link rel="stylesheet" href="css/login-enhancements.css" />
+    <title>FAMILIA+</title>
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      th:href="@{/favicon.svg}"
+      href="/favicon.svg"
+    />
+
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="/css/main.css" />
     <script
       src="https://kit.fontawesome.com/3b7dae609c.js"
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
-    <nav class="modern-nav">
-      <div class="nav-container">
-        <div class="nav-brand">
-          <h2>FAMILIA-PLUS</h2>
-          <p class="nav-subtitle">Cuidando con amor y profesionalidad</p>
-        </div>
-
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          aria-label="Toggle navigation"
-        >
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-
-        <ul class="nav-menu" id="navMenu">
-          <li class="nav-item">
-            <a th:href="@{/index}" class="nav-link">
-              <i class="fas fa-home"></i> Inicio
-            </a>
+  <body class="page menu-page">
+    <header id="encabezado">
+      <nav>
+        <ul id="menu">
+          <li class="elementoMenu"><a th:href="@{/index}">Inicio</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/sobreNosotros}">Sobre Nosotros</a>
           </li>
-          <li class="nav-item">
-            <a th:href="@{/sobreNosotros}" class="nav-link">
-              <i class="fas fa-heart"></i> Sobre Nosotros
-            </a>
+          <li class="elementoMenu"><a th:href="@{/menu}">Menú Mensual</a></li>
+          <li class="elementoMenu">
+            <a th:href="@{/actividades}">Actividades</a>
           </li>
-          <li class="nav-item active">
-            <a th:href="@{/menu}" class="nav-link">
-              <i class="fas fa-utensils"></i> Menú Mensual
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/actividades}" class="nav-link">
-              <i class="fas fa-calendar-alt"></i> Actividades
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/contacto}" class="nav-link">
-              <i class="fas fa-phone"></i> Contacto
-            </a>
-          </li>
+          <li class="elementoMenu"><a th:href="@{/contacto}">Contacto</a></li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+      <h1 id="nombreVentana">Menú Mensual</h1>
+    </header>
+    <main>
+      <!-- Hero Section -->
+      <section class="page-hero menu-hero">
+        <div class="hero-overlay"></div>
+        <div class="page-hero-content">
+          <i class="fa-solid fa-utensils hero-icon"></i>
+          <h2>Nutrición Equilibrada y Deliciosa</h2>
+          <p>Menús elaborados por nutricionistas especializados en geriatría</p>
+        </div>
+      </section>
 
-    <main class="main-content">
-      <div class="hero-section">
-        <div class="hero-content">
-          <h1 class="hero-title">Menú Mensual</h1>
-          <p class="hero-subtitle">
-            Planificación nutricional para nuestros residentes
-          </p>
-          <div class="download-section">
-            <a
-              href="/download/activities-schedule"
-              class="download-btn"
-              download
-            >
-              <i class="fas fa-download"></i>
-              Descargar Menú en PDF
-            </a>
-          </div>
+      <!-- Menu Info Cards -->
+      <div class="menu-info-section">
+        <div class="info-card">
+          <i class="fa-solid fa-leaf"></i>
+          <h3>Ingredientes Frescos</h3>
+          <p>Productos de temporada y de proximidad</p>
+        </div>
+        <div class="info-card">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <h3>Dietas Personalizadas</h3>
+          <p>Adaptadas a necesidades médicas y preferencias</p>
+        </div>
+        <div class="info-card">
+          <i class="fa-solid fa-award"></i>
+          <h3>Cocina Casera</h3>
+          <p>Elaboración tradicional con sabor a hogar</p>
         </div>
       </div>
 
-      <div class="menu-container">
+      <!-- Menu Image -->
+      <div class="contenedorMenu">
         <div class="menu-card">
-          <div class="menu-image">
-            <img src="media/menu.jpg" alt="Menú Mensual - Comida saludable" />
-            <div class="menu-overlay">
-              <i class="fas fa-utensils"></i>
+          <h2 class="menu-title">Menú del Mes</h2>
+          <p class="menu-subtitle">
+            Consulte nuestro menú mensual con todas las opciones disponibles
+          </p>
+          <img
+            class="imagen"
+            alt="Menú mensual de FAMILIA-PLUS"
+            th:src="@{/media/menu.jpg}"
+            src="/media/menu.jpg"
+            onclick="openImageModal(this.src)"
+          />
+          <p class="menu-note">
+            <i class="fa-solid fa-info-circle"></i>
+            Haga clic en la imagen para ampliar
+          </p>
+        </div>
+      </div>
+
+      <!-- Additional Info -->
+      <section class="menu-features">
+        <h2 class="section-title">
+          Características de Nuestro Servicio de Comidas
+        </h2>
+        <div class="features-list">
+          <div class="feature-item-menu">
+            <i class="fa-solid fa-check-circle"></i>
+            <div>
+              <h4>Variedad de Opciones</h4>
+              <p>Diferentes platos para elegir cada día</p>
             </div>
-            <button
-              class="zoom-btn"
-              onclick="zoomImage(this)"
-              title="Ver imagen más grande"
-            >
-              <i class="fas fa-search-plus"></i>
-            </button>
           </div>
-          <div class="menu-content">
-            <h3 class="menu-title">Menú Semanal</h3>
-            <p class="menu-description">
-              Nuestro menú está cuidadosamente planificado por nutricionistas
-              profesionales, garantizando una alimentación equilibrada y sabrosa
-              para todos nuestros residentes. Incluye opciones variadas
-              adaptadas a diferentes necesidades dietéticas.
-            </p>
-            <div class="menu-features">
-              <div class="feature">
-                <i class="fas fa-heart"></i>
-                <span>Dietas personalizadas</span>
-              </div>
-              <div class="feature">
-                <i class="fas fa-leaf"></i>
-                <span>Ingredientes frescos</span>
-              </div>
-              <div class="feature">
-                <i class="fas fa-clock"></i>
-                <span>Horarios regulares</span>
-              </div>
+          <div class="feature-item-menu">
+            <i class="fa-solid fa-check-circle"></i>
+            <div>
+              <h4>Control Nutricional</h4>
+              <p>Supervisión por nutricionistas certificados</p>
+            </div>
+          </div>
+          <div class="feature-item-menu">
+            <i class="fa-solid fa-check-circle"></i>
+            <div>
+              <h4>Alergias e Intolerancias</h4>
+              <p>Menús especiales para cualquier restricción alimentaria</p>
+            </div>
+          </div>
+          <div class="feature-item-menu">
+            <i class="fa-solid fa-check-circle"></i>
+            <div>
+              <h4>Horarios Flexibles</h4>
+              <p>Adaptados a las necesidades de cada residente</p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </main>
 
-    <!-- Image Zoom Modal -->
-    <div id="imageModal" class="image-modal">
-      <span class="close-modal" onclick="closeImageModal()">&times;</span>
-      <img class="modal-content" id="modalImage" />
-    </div>
-
-    <footer class="modern-footer">
+    <footer class="footer">
       <div class="footer-content">
+        <div class="footer-section footer-logo">
+          <div class="logo-wrapper">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h4>FAMILIA-PLUS</h4>
+          </div>
+          <p>Cuidando con amor y profesionalidad desde 2010</p>
+          <p class="footer-address">
+            <i class="fa-solid fa-location-dot"></i>
+            Villaviciosa de Odón, Madrid
+          </p>
+        </div>
         <div class="footer-section">
-          <h3>FAMILIA-PLUS</h3>
-          <p>Cuidando con amor y profesionalidad</p>
+          <h4>Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li>
+              <a th:href="@{/index}"
+                ><i class="fa-solid fa-angle-right"></i> Inicio</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/sobreNosotros}"
+                ><i class="fa-solid fa-angle-right"></i> Sobre Nosotros</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/actividades}"
+                ><i class="fa-solid fa-angle-right"></i> Actividades</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/contacto}"
+                ><i class="fa-solid fa-angle-right"></i> Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p class="footer-contact">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+34918000000">+34 918 000 000</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@familia-plus.es">info@familia-plus.es</a>
+          </p>
+          <p class="footer-contact">
+            <i class="fa-solid fa-clock"></i>
+            24/7 Atención Continua
+          </p>
         </div>
         <div class="footer-section">
           <h4>Síguenos</h4>
           <div class="social-icons">
-            <i class="fab fa-facebook-square"></i>
-            <i class="fab fa-twitter-square"></i>
-            <i class="fab fa-instagram-square"></i>
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="#" aria-label="Twitter"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 FAMILIA-PLUS. Todos los derechos reservados.</p>
+        <p>
+          &copy; 2024 FAMILIA-PLUS. Todos los derechos reservados. |
+          <a href="#">Política de Privacidad</a> |
+          <a href="#">Términos de Uso</a>
+        </p>
       </div>
     </footer>
-
-    <script src="js/scripts.js"></script>
   </body>
 </html>
